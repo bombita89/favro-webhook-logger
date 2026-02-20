@@ -16,5 +16,15 @@
     "sequentialId": 5782,
     "name": "bla bla",
     "assignees": []
+  },
+  "test-return-common": {
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "lastSeen": "2026-02-20T21:56:15.815Z",
+    "sequentialId": 8888,
+    "name": "Тест: проверка return-сценария",
+    "assignees": [
+      "Alexandr Karyakin"
+    ]
   }
 }
