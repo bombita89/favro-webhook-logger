@@ -11,5 +11,79 @@
       "67050c35e6d6f97efcf43deb"
     ],
     "timeOnColumns": []
+  },
+  {
+    "timestamp": "2026-02-20T21:55:44.947Z",
+    "cardCommonId": "f9199dcbdbca1668603aa6a0",
+    "cardId": "2ff3b0568aeba00d1f6c7bd9",
+    "sequentialId": 5782,
+    "name": "bla bla",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 25797108,
+      "ddfdfc6d1de72aea01fb80e4": 20717,
+      "e70873a4ee5289566911d143": 6879,
+      "9ee2b845e4e8262a6ef80c56": 1822,
+      "15563c2c50d3838a64e76261": 1656140
+    }
+  },
+  {
+    "timestamp": "2026-02-20T21:55:46.403Z",
+    "cardCommonId": "f9199dcbdbca1668603aa6a0",
+    "cardId": "2ff3b0568aeba00d1f6c7bd9",
+    "sequentialId": 5782,
+    "name": "bla bla",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 25798526,
+      "ddfdfc6d1de72aea01fb80e4": 20717,
+      "e70873a4ee5289566911d143": 6879,
+      "9ee2b845e4e8262a6ef80c56": 1822,
+      "15563c2c50d3838a64e76261": 1656197
+    },
+    "previousColumn": "Code Review",
+    "moveDirection": "backward",
+    "isReturn": true,
+    "returnType": "code_review_rejection"
+  },
+  {
+    "timestamp": "2026-02-20T21:55:49.873Z",
+    "cardCommonId": "f9199dcbdbca1668603aa6a0",
+    "cardId": "2ff3b0568aeba00d1f6c7bd9",
+    "sequentialId": 5782,
+    "name": "bla bla",
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "assignees": [],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 25798526,
+      "ddfdfc6d1de72aea01fb80e4": 20809,
+      "e70873a4ee5289566911d143": 8405,
+      "9ee2b845e4e8262a6ef80c56": 1822,
+      "15563c2c50d3838a64e76261": 1658056
+    },
+    "previousColumn": "Ready For Dev",
+    "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-02-20T21:55:55.180Z",
+    "cardCommonId": "f9199dcbdbca1668603aa6a0",
+    "cardId": "2ff3b0568aeba00d1f6c7bd9",
+    "sequentialId": 5782,
+    "name": "bla bla",
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "assignees": [],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 25798526,
+      "ddfdfc6d1de72aea01fb80e4": 22204,
+      "e70873a4ee5289566911d143": 8405,
+      "9ee2b845e4e8262a6ef80c56": 4201,
+      "15563c2c50d3838a64e76261": 1659604
+    }
   }
 ]
