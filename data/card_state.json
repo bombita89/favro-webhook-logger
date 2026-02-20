@@ -1,0 +1,12 @@
+{
+  "test-common-001": {
+    "columnId": "d92c9c0c83e86a0c4dda57de",
+    "columnName": "d92c9c0c83e86a0c4dda57de",
+    "lastSeen": "2026-02-20T21:55:05.880Z",
+    "sequentialId": 9999,
+    "name": "Тестовая проверка персистенции",
+    "assignees": [
+      "67050c35e6d6f97efcf43deb"
+    ]
+  }
+}
