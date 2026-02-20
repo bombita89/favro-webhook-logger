@@ -15,5 +15,27 @@
       "9ee2b845e4e8262a6ef80c56": 1822,
       "15563c2c50d3838a64e76261": 1656197
     }
+  },
+  {
+    "timestamp": "2026-02-20T21:56:15.815Z",
+    "cardCommonId": "test-return-common",
+    "sequentialId": 8888,
+    "cardName": "Тест: проверка return-сценария",
+    "fromColumn": "Code Review",
+    "toColumn": "Doing",
+    "returnType": "code_review_rejection",
+    "assignees": [
+      "Alexandr Karyakin"
+    ],
+    "timeOnColumns": [
+      {
+        "columnId": "3f6c5115c9ed29fb4c8e6490",
+        "timeInColumn": 3600
+      },
+      {
+        "columnId": "ddfdfc6d1de72aea01fb80e4",
+        "timeInColumn": 90000
+      }
+    ]
   }
 ]
