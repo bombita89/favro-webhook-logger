@@ -5,6 +5,12 @@ const path = require("path");
 const app = express();
 app.use(express.json({ limit: "1mb" }));
 
+// ─── GitHub persistence config ───
+const GH_TOKEN = process.env.GH_TOKEN;       // GitHub Personal Access Token
+const GH_REPO = process.env.GH_REPO;         // e.g. "username/favro-webhook-logger"
+const GH_BRANCH = process.env.GH_BRANCH || "main";
+const GH_DATA_FILES = ["card_state.json", "returns.json", "events.json"];
+
 // ─── Column config (All projects board) ───
 const COLUMNS = {
   "f98217af6ec2a0bf271f8974": { name: "Epic", order: 0 },
@@ -53,20 +59,15 @@ const USERS = {
 
 // ─── Significant returns (from → to that counts as regression) ───
 const SIGNIFICANT_RETURNS = new Set([
-  // Code Review → back
   "Code Review -> Doing",
   "Code Review -> Ready For Dev",
-  // Waits for Build → back
   "Waits for Build -> Doing",
   "Waits for Build -> Ready For Dev",
-  // QA Todo → back
   "QA Todo -> Doing",
   "QA Todo -> Ready For Dev",
-  // QA Doing → back
   "QA Doing -> Doing",
   "QA Doing -> Ready For Dev",
   "QA Doing -> QA Todo",
-  // Ready for Release → back
   "Ready for Release -> Doing",
   "Ready for Release -> Ready For Dev",
   "Ready for Release -> QA Todo",
@@ -74,51 +75,134 @@ const SIGNIFICANT_RETURNS = new Set([
 ]);
 
 // ─── In-memory state ───
-// cardCommonId → { columnId, columnName, lastSeen }
 const cardState = {};
-
-// All events log (in memory, persisted to file)
 const allEvents = [];
 const returns = [];
 
-// ─── File paths ───
-const DATA_DIR = path.join(__dirname, "data");
-const STATE_FILE = path.join(DATA_DIR, "card_state.json");
-const EVENTS_FILE = path.join(DATA_DIR, "events.json");
-const RETURNS_FILE = path.join(DATA_DIR, "returns.json");
+// ─── GitHub API helpers ───
+async function ghApiRequest(method, filePath, body = null) {
+  if (!GH_TOKEN || !GH_REPO) return null;
+  const url = `https://api.github.com/repos/${GH_REPO}/contents/data/${filePath}`;
+  const headers = {
+    Authorization: `Bearer ${GH_TOKEN}`,
+    Accept: "application/vnd.github.v3+json",
+    "User-Agent": "favro-webhook-logger",
+  };
+  if (body) headers["Content-Type"] = "application/json";
 
-// ─── Load persisted state on startup ───
-function loadState() {
+  const opts = { method, headers };
+  if (body) opts.body = JSON.stringify(body);
+
+  const res = await fetch(url, opts);
+  if (!res.ok && res.status !== 404) {
+    console.error(`GitHub API error ${res.status} for ${filePath}:`, await res.text());
+    return null;
+  }
+  if (res.status === 404) return null;
+  return res.json();
+}
+
+async function ghReadFile(filePath) {
+  const data = await ghApiRequest("GET", filePath);
+  if (!data || !data.content) return null;
+  const content = Buffer.from(data.content, "base64").toString("utf8");
+  return { content: JSON.parse(content), sha: data.sha };
+}
+
+async function ghWriteFile(filePath, jsonData, sha) {
+  const content = Buffer.from(JSON.stringify(jsonData, null, 2)).toString("base64");
+  const body = {
+    message: `auto: update ${filePath} [${new Date().toISOString()}]`,
+    content,
+    branch: GH_BRANCH,
+  };
+  if (sha) body.sha = sha;
+  return ghApiRequest("PUT", filePath, body);
+}
+
+// SHA cache for each file
+const fileShas = {};
+
+// ─── Load state from GitHub on startup ───
+async function loadStateFromGitHub() {
+  if (!GH_TOKEN || !GH_REPO) {
+    console.log("⚠ GH_TOKEN or GH_REPO not set — GitHub persistence disabled");
+    return;
+  }
+  console.log(`Loading state from GitHub (${GH_REPO})...`);
+
   try {
-    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-    if (fs.existsSync(STATE_FILE)) {
-      const data = JSON.parse(fs.readFileSync(STATE_FILE, "utf8"));
-      Object.assign(cardState, data);
-      console.log(`Loaded state for ${Object.keys(data).length} cards`);
+    const stateResult = await ghReadFile("card_state.json");
+    if (stateResult) {
+      Object.assign(cardState, stateResult.content);
+      fileShas["card_state.json"] = stateResult.sha;
+      console.log(`  Loaded state for ${Object.keys(stateResult.content).length} cards`);
     }
-    if (fs.existsSync(EVENTS_FILE)) {
-      const data = JSON.parse(fs.readFileSync(EVENTS_FILE, "utf8"));
-      allEvents.push(...data);
-      console.log(`Loaded ${data.length} historical events`);
+
+    const eventsResult = await ghReadFile("events.json");
+    if (eventsResult) {
+      allEvents.push(...eventsResult.content);
+      fileShas["events.json"] = eventsResult.sha;
+      console.log(`  Loaded ${eventsResult.content.length} events`);
     }
-    if (fs.existsSync(RETURNS_FILE)) {
-      const data = JSON.parse(fs.readFileSync(RETURNS_FILE, "utf8"));
-      returns.push(...data);
-      console.log(`Loaded ${data.length} historical returns`);
+
+    const returnsResult = await ghReadFile("returns.json");
+    if (returnsResult) {
+      returns.push(...returnsResult.content);
+      fileShas["returns.json"] = returnsResult.sha;
+      console.log(`  Loaded ${returnsResult.content.length} returns`);
     }
+
+    console.log("GitHub state loaded successfully");
   } catch (e) {
-    console.log("No previous state found, starting fresh:", e.message);
+    console.error("Error loading from GitHub:", e.message);
   }
 }
 
-function saveState() {
+// ─── Save state to GitHub (debounced) ───
+let saveTimeout = null;
+const SAVE_DELAY_MS = 5000; // batch saves: wait 5s after last event
+
+function scheduleSaveToGitHub() {
+  if (!GH_TOKEN || !GH_REPO) return;
+  if (saveTimeout) clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(() => saveToGitHub(), SAVE_DELAY_MS);
+}
+
+async function saveToGitHub() {
+  if (!GH_TOKEN || !GH_REPO) return;
+  console.log("Saving state to GitHub...");
+
+  try {
+    const files = [
+      { name: "card_state.json", data: cardState },
+      { name: "events.json", data: allEvents },
+      { name: "returns.json", data: returns },
+    ];
+
+    for (const f of files) {
+      const result = await ghWriteFile(f.name, f.data, fileShas[f.name]);
+      if (result && result.content) {
+        fileShas[f.name] = result.content.sha;
+      }
+    }
+    console.log("  GitHub save complete");
+  } catch (e) {
+    console.error("Error saving to GitHub:", e.message);
+  }
+}
+
+// ─── Also save to local disk as fallback ───
+const DATA_DIR = path.join(__dirname, "data");
+
+function saveStateLocal() {
   try {
     if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-    fs.writeFileSync(STATE_FILE, JSON.stringify(cardState, null, 2));
-    fs.writeFileSync(EVENTS_FILE, JSON.stringify(allEvents, null, 2));
-    fs.writeFileSync(RETURNS_FILE, JSON.stringify(returns, null, 2));
+    fs.writeFileSync(path.join(DATA_DIR, "card_state.json"), JSON.stringify(cardState, null, 2));
+    fs.writeFileSync(path.join(DATA_DIR, "events.json"), JSON.stringify(allEvents, null, 2));
+    fs.writeFileSync(path.join(DATA_DIR, "returns.json"), JSON.stringify(returns, null, 2));
   } catch (e) {
-    console.error("Failed to save state:", e.message);
+    console.error("Local save failed:", e.message);
   }
 }
 
@@ -132,8 +216,7 @@ function colOrder(colId) {
 function userName(userId) {
   return USERS[userId] || userId;
 }
-
-function classifyReturn(fromCol, toCol) {
+function classifyReturn(fromCol) {
   if (fromCol.includes("Code Review")) return "code_review_rejection";
   if (fromCol.includes("QA")) return "qa_rejection";
   if (fromCol.includes("Waits for Build")) return "build_rejection";
@@ -146,16 +229,13 @@ app.post("/favro-webhook", (req, res) => {
   const body = req.body;
   const now = new Date().toISOString();
 
-  // Log raw event
   console.log("=== FAVRO EVENT ===", now);
 
-  // Handle test ping
   if (body.test) {
     console.log("Test ping received");
     return res.status(200).json({ ok: true, message: "pong" });
   }
 
-  // Extract card data
   const card = body.card;
   if (!card) {
     console.log("No card data in payload");
@@ -179,7 +259,6 @@ app.post("/favro-webhook", (req, res) => {
     timeOnColumns: card.timeOnColumns || {},
   };
 
-  // Check for return (regression)
   const prev = cardState[cardCommonId];
   if (prev && prev.columnId !== currentColId) {
     const fromName = prev.columnName;
@@ -198,7 +277,7 @@ app.post("/favro-webhook", (req, res) => {
         cardName: card.name,
         fromColumn: fromName,
         toColumn: toName,
-        returnType: classifyReturn(fromName, toName),
+        returnType: classifyReturn(fromName),
         assignees,
         timeOnColumns: card.timeOnColumns || {},
       };
@@ -235,46 +314,39 @@ app.post("/favro-webhook", (req, res) => {
   };
 
   allEvents.push(event);
-  saveState();
+  saveStateLocal();
+  scheduleSaveToGitHub();
 
   res.status(200).json({ ok: true });
 });
 
-// ─── API endpoints for reading data ───
+// ─── API endpoints ───
 
 app.get("/", (req, res) => {
   res.send("Favro webhook logger is running");
 });
 
-// Get all returns
 app.get("/api/returns", (req, res) => {
   res.json({
     total: returns.length,
-    returns: returns.slice().reverse(), // newest first
+    returns: returns.slice().reverse(),
   });
 });
 
-// Get returns summary/stats
 app.get("/api/returns/stats", (req, res) => {
   const byType = {};
   const byAssignee = {};
   const byCard = {};
 
   for (const r of returns) {
-    // By type
     byType[r.returnType] = (byType[r.returnType] || 0) + 1;
-
-    // By assignee
     for (const a of r.assignees) {
       byAssignee[a] = (byAssignee[a] || 0) + 1;
     }
-
-    // By card
     const key = `#${r.sequentialId} ${r.cardName}`;
     byCard[key] = (byCard[key] || 0) + 1;
   }
 
-  // Sort
   const sortObj = (obj) =>
     Object.fromEntries(Object.entries(obj).sort((a, b) => b[1] - a[1]));
 
@@ -288,7 +360,6 @@ app.get("/api/returns/stats", (req, res) => {
   });
 });
 
-// Get recent events (last N)
 app.get("/api/events", (req, res) => {
   const limit = parseInt(req.query.limit) || 50;
   res.json({
@@ -297,7 +368,6 @@ app.get("/api/events", (req, res) => {
   });
 });
 
-// Get current state of all tracked cards
 app.get("/api/state", (req, res) => {
   res.json({
     trackedCards: Object.keys(cardState).length,
@@ -305,10 +375,10 @@ app.get("/api/state", (req, res) => {
   });
 });
 
-// Health check
 app.get("/health", (req, res) => {
   res.json({
     status: "ok",
+    githubPersistence: !!(GH_TOKEN && GH_REPO),
     uptime: process.uptime(),
     trackedCards: Object.keys(cardState).length,
     totalEvents: allEvents.length,
@@ -316,9 +386,20 @@ app.get("/health", (req, res) => {
   });
 });
 
-// ─── Start ───
-loadState();
-const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => {
-  console.log(`Favro webhook logger listening on port ${PORT}`);
+// Force save (manual trigger)
+app.post("/api/save", async (req, res) => {
+  await saveToGitHub();
+  res.json({ ok: true, message: "Saved to GitHub" });
 });
+
+// ─── Start ───
+async function start() {
+  await loadStateFromGitHub();
+  const PORT = process.env.PORT || 10000;
+  app.listen(PORT, () => {
+    console.log(`Favro webhook logger listening on port ${PORT}`);
+    console.log(`GitHub persistence: ${GH_TOKEN && GH_REPO ? "ENABLED" : "DISABLED"}`);
+  });
+}
+
+start();
