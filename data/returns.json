@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "timestamp": "2026-02-20T21:55:46.403Z",
+    "cardCommonId": "f9199dcbdbca1668603aa6a0",
+    "sequentialId": 5782,
+    "cardName": "bla bla",
+    "fromColumn": "Code Review",
+    "toColumn": "Ready For Dev",
+    "returnType": "code_review_rejection",
+    "assignees": [],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 25798526,
+      "ddfdfc6d1de72aea01fb80e4": 20717,
+      "e70873a4ee5289566911d143": 6879,
+      "9ee2b845e4e8262a6ef80c56": 1822,
+      "15563c2c50d3838a64e76261": 1656197
+    }
+  }
+]
