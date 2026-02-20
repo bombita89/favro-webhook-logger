@@ -85,5 +85,49 @@
       "9ee2b845e4e8262a6ef80c56": 4201,
       "15563c2c50d3838a64e76261": 1659604
     }
+  },
+  {
+    "timestamp": "2026-02-20T21:56:13.485Z",
+    "cardCommonId": "test-return-common",
+    "cardId": "test-return-001",
+    "sequentialId": 8888,
+    "name": "Тест: проверка return-сценария",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Alexandr Karyakin"
+    ],
+    "timeOnColumns": [
+      {
+        "columnId": "ddfdfc6d1de72aea01fb80e4",
+        "timeInColumn": 86400
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-02-20T21:56:15.815Z",
+    "cardCommonId": "test-return-common",
+    "cardId": "test-return-001",
+    "sequentialId": 8888,
+    "name": "Тест: проверка return-сценария",
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "assignees": [
+      "Alexandr Karyakin"
+    ],
+    "timeOnColumns": [
+      {
+        "columnId": "3f6c5115c9ed29fb4c8e6490",
+        "timeInColumn": 3600
+      },
+      {
+        "columnId": "ddfdfc6d1de72aea01fb80e4",
+        "timeInColumn": 90000
+      }
+    ],
+    "previousColumn": "Code Review",
+    "moveDirection": "backward",
+    "isReturn": true,
+    "returnType": "code_review_rejection"
   }
 ]
