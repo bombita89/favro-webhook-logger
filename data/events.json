@@ -652,5 +652,25 @@
     },
     "previousColumn": "Ready For Dev",
     "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-02-25T21:36:43.458Z",
+    "cardCommonId": "f9199dcbdbca1668603aa6a0",
+    "cardId": "2ff3b0568aeba00d1f6c7bd9",
+    "sequentialId": 5782,
+    "name": "bla bla",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 25880765,
+      "ddfdfc6d1de72aea01fb80e4": 29737432,
+      "e70873a4ee5289566911d143": 13083,
+      "9ee2b845e4e8262a6ef80c56": 27672,
+      "15563c2c50d3838a64e76261": 402678659,
+      "4405671fd8390707bc5b4bd2": 3575
+    },
+    "previousColumn": "Doing",
+    "moveDirection": "forward"
   }
 ]
