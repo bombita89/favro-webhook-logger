@@ -159,5 +159,23 @@
       "15563c2c50d3838a64e76261": 402563063,
       "4405671fd8390707bc5b4bd2": 3575
     }
+  },
+  {
+    "timestamp": "2026-02-25T21:33:18.306Z",
+    "cardCommonId": "f9199dcbdbca1668603aa6a0",
+    "sequentialId": 5782,
+    "cardName": "bla bla",
+    "fromColumn": "Code Review",
+    "toColumn": "Doing",
+    "returnType": "code_review_rejection",
+    "assignees": [],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 25848485,
+      "ddfdfc6d1de72aea01fb80e4": 29643371,
+      "e70873a4ee5289566911d143": 13083,
+      "9ee2b845e4e8262a6ef80c56": 14700,
+      "15563c2c50d3838a64e76261": 402612826,
+      "4405671fd8390707bc5b4bd2": 3575
+    }
   }
 ]
