@@ -36,5 +36,15 @@
     "assignees": [
       "Sergey Ivontev"
     ]
+  },
+  "bb05cebe86938386de5edeec": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-02T14:10:27.173Z",
+    "sequentialId": 4419,
+    "name": "[tz] очередь ",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ]
   }
 }
