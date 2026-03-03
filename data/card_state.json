@@ -46,5 +46,15 @@
     "assignees": [
       "Konstantin Zaytsev"
     ]
+  },
+  "49c308563f385157576001a9": {
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "lastSeen": "2026-03-03T09:24:17.406Z",
+    "sequentialId": 5935,
+    "name": "[veilviewer] ретест + правки",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ]
   }
 }
