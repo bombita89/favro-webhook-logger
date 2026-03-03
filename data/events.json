@@ -789,5 +789,24 @@
     "moveDirection": "backward",
     "isReturn": true,
     "returnType": "code_review_rejection"
+  },
+  {
+    "timestamp": "2026-03-03T12:27:15.148Z",
+    "cardCommonId": "eb95b1dfb4f173bde5fe7305",
+    "cardId": "58683bcaf8c24e1b9c8ed782",
+    "sequentialId": 5087,
+    "name": "посмотреть по сайтам где есть css с отложенной загрузкой",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 5591143676,
+      "3f6c5115c9ed29fb4c8e6490": 71,
+      "ddfdfc6d1de72aea01fb80e4": 94492760,
+      "450eca361acacbda92cde88e": 885435030,
+      "15563c2c50d3838a64e76261": 1383522614
+    }
   }
 ]
