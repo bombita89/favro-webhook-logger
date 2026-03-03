@@ -66,5 +66,15 @@
     "assignees": [
       "Ismat Valiyev"
     ]
+  },
+  "eb95b1dfb4f173bde5fe7305": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-03T12:27:15.148Z",
+    "sequentialId": 5087,
+    "name": "посмотреть по сайтам где есть css с отложенной загрузкой",
+    "assignees": [
+      "Sergey Ivontev"
+    ]
   }
 }
