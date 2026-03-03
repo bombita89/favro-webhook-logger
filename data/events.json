@@ -749,5 +749,22 @@
       "ddfdfc6d1de72aea01fb80e4": 87,
       "e70873a4ee5289566911d143": 88795095
     }
+  },
+  {
+    "timestamp": "2026-03-03T10:16:59.397Z",
+    "cardCommonId": "cd76f34de7cf8afc8d100b43",
+    "cardId": "9b316d0d258d3a0ba01483b5",
+    "sequentialId": 5936,
+    "name": "[anonyig] добавить rewarded ads для мультивыдачи(профиль и карусель)",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Ismat Valiyev"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 86,
+      "ddfdfc6d1de72aea01fb80e4": 6079156,
+      "15563c2c50d3838a64e76261": 75088805
+    }
   }
 ]
