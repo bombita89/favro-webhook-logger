@@ -766,5 +766,28 @@
       "ddfdfc6d1de72aea01fb80e4": 6079156,
       "15563c2c50d3838a64e76261": 75088805
     }
+  },
+  {
+    "timestamp": "2026-03-03T11:27:06.715Z",
+    "cardCommonId": "bb05cebe86938386de5edeec",
+    "cardId": "deb0e58dff89fb728c7c9097",
+    "sequentialId": 4419,
+    "name": "[tz] очередь ",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "bcd5f846b2d9a470240c4f18": 3030145,
+      "af8ed7601472c3e22faa634b": 13652797630,
+      "3f6c5115c9ed29fb4c8e6490": 76599638,
+      "ddfdfc6d1de72aea01fb80e4": 557871305,
+      "15563c2c50d3838a64e76261": 657596360
+    },
+    "previousColumn": "Code Review",
+    "moveDirection": "backward",
+    "isReturn": true,
+    "returnType": "code_review_rejection"
   }
 ]
