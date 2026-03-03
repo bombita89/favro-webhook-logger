@@ -38,9 +38,9 @@
     ]
   },
   "bb05cebe86938386de5edeec": {
-    "columnId": "3f6c5115c9ed29fb4c8e6490",
-    "columnName": "Code Review",
-    "lastSeen": "2026-03-02T14:10:27.173Z",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "lastSeen": "2026-03-03T11:27:06.715Z",
     "sequentialId": 4419,
     "name": "[tz] очередь ",
     "assignees": [
