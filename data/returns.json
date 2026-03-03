@@ -231,5 +231,24 @@
       "15563c2c50d3838a64e76261": 402678718,
       "4405671fd8390707bc5b4bd2": 3575
     }
+  },
+  {
+    "timestamp": "2026-03-03T11:27:06.715Z",
+    "cardCommonId": "bb05cebe86938386de5edeec",
+    "sequentialId": 4419,
+    "cardName": "[tz] очередь ",
+    "fromColumn": "Code Review",
+    "toColumn": "Ready For Dev",
+    "returnType": "code_review_rejection",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "bcd5f846b2d9a470240c4f18": 3030145,
+      "af8ed7601472c3e22faa634b": 13652797630,
+      "3f6c5115c9ed29fb4c8e6490": 76599638,
+      "ddfdfc6d1de72aea01fb80e4": 557871305,
+      "15563c2c50d3838a64e76261": 657596360
+    }
   }
 ]
