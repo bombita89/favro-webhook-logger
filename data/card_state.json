@@ -56,5 +56,15 @@
     "assignees": [
       "Konstantin Zaytsev"
     ]
+  },
+  "cd76f34de7cf8afc8d100b43": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-03T10:16:59.397Z",
+    "sequentialId": 5936,
+    "name": "[anonyig] добавить rewarded ads для мультивыдачи(профиль и карусель)",
+    "assignees": [
+      "Ismat Valiyev"
+    ]
   }
 }
