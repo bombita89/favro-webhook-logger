@@ -868,5 +868,24 @@
       "3f6c5115c9ed29fb4c8e6490": 131,
       "15563c2c50d3838a64e76261": 87327212
     }
+  },
+  {
+    "timestamp": "2026-03-04T11:00:09.248Z",
+    "cardCommonId": "49c308563f385157576001a9",
+    "cardId": "41e286e17a794bea85a4d583",
+    "sequentialId": 5935,
+    "name": "[veilviewer] ретест + правки",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 1688,
+      "ddfdfc6d1de72aea01fb80e4": 92151950,
+      "e70873a4ee5289566911d143": 88795095
+    },
+    "previousColumn": "Doing",
+    "moveDirection": "forward"
   }
 ]
