@@ -76,5 +76,15 @@
     "assignees": [
       "Sergey Ivontev"
     ]
+  },
+  "763397fd1f3528416896dd18": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-04T07:32:14.329Z",
+    "sequentialId": 5503,
+    "name": "[veilviewer] Saved profiles frontend",
+    "assignees": [
+      "AbdulMalik Akhzamov"
+    ]
   }
 }
