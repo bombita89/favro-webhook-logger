@@ -887,5 +887,26 @@
     },
     "previousColumn": "Doing",
     "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-03-04T11:35:31.042Z",
+    "cardCommonId": "763397fd1f3528416896dd18",
+    "cardId": "77a55d4878c400589ec8277f",
+    "sequentialId": 5503,
+    "name": "[veilviewer] Saved profiles frontend",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "AbdulMalik Akhzamov"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 14596861,
+      "ddfdfc6d1de72aea01fb80e4": 668894472,
+      "15563c2c50d3838a64e76261": 1133291687
+    },
+    "previousColumn": "Code Review",
+    "moveDirection": "backward",
+    "isReturn": true,
+    "returnType": "code_review_rejection"
   }
 ]
