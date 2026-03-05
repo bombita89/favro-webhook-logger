@@ -930,5 +930,26 @@
     "moveDirection": "backward",
     "isReturn": true,
     "returnType": "code_review_rejection"
+  },
+  {
+    "timestamp": "2026-03-05T14:30:12.946Z",
+    "cardCommonId": "bb05cebe86938386de5edeec",
+    "cardId": "deb0e58dff89fb728c7c9097",
+    "sequentialId": 4419,
+    "name": "[tz] очередь ",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "bcd5f846b2d9a470240c4f18": 3030145,
+      "af8ed7601472c3e22faa634b": 13652797630,
+      "3f6c5115c9ed29fb4c8e6490": 76599717,
+      "ddfdfc6d1de72aea01fb80e4": 582366877,
+      "15563c2c50d3838a64e76261": 816886784
+    },
+    "previousColumn": "Ready For Dev",
+    "moveDirection": "forward"
   }
 ]
