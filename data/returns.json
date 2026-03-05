@@ -288,5 +288,23 @@
       "ddfdfc6d1de72aea01fb80e4": 668894472,
       "15563c2c50d3838a64e76261": 1133291687
     }
+  },
+  {
+    "timestamp": "2026-03-05T07:37:00.961Z",
+    "cardCommonId": "49c308563f385157576001a9",
+    "sequentialId": 5935,
+    "cardName": "[veilviewer] ретест + правки",
+    "fromColumn": "Code Review",
+    "toColumn": "Ready For Dev",
+    "returnType": "code_review_rejection",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 74213134,
+      "ddfdfc6d1de72aea01fb80e4": 92151950,
+      "e70873a4ee5289566911d143": 88795095,
+      "15563c2c50d3838a64e76261": 132
+    }
   }
 ]
