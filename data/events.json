@@ -951,5 +951,26 @@
     },
     "previousColumn": "Ready For Dev",
     "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-03-06T13:36:23.335Z",
+    "cardCommonId": "763397fd1f3528416896dd18",
+    "cardId": "77a55d4878c400589ec8277f",
+    "sequentialId": 5503,
+    "name": "[veilviewer] Saved profiles frontend",
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "assignees": [
+      "AbdulMalik Akhzamov"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 14596861,
+      "ddfdfc6d1de72aea01fb80e4": 668894674,
+      "e70873a4ee5289566911d143": 32508636,
+      "9ee2b845e4e8262a6ef80c56": 68462427,
+      "15563c2c50d3838a64e76261": 1212372576
+    },
+    "previousColumn": "Ready For Dev",
+    "moveDirection": "forward"
   }
 ]
