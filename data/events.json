@@ -1030,5 +1030,23 @@
       "9ee2b845e4e8262a6ef80c56": 68351006,
       "15563c2c50d3838a64e76261": 86770511
     }
+  },
+  {
+    "timestamp": "2026-03-09T11:50:11.972Z",
+    "cardCommonId": "1868cfe51959d158b32c059f",
+    "cardId": "9ff333a7c59c8f58c50b3a2e",
+    "sequentialId": 4894,
+    "name": "[sf/tz] Ссылка на paywall 2 блока на EN и 1 блок на RU",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 8144506846,
+      "3f6c5115c9ed29fb4c8e6490": 73,
+      "ddfdfc6d1de72aea01fb80e4": 9439146,
+      "15563c2c50d3838a64e76261": 1558136676
+    }
   }
 ]
