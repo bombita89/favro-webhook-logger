@@ -121,9 +121,9 @@
     ]
   },
   "1868cfe51959d158b32c059f": {
-    "columnId": "3f6c5115c9ed29fb4c8e6490",
-    "columnName": "Code Review",
-    "lastSeen": "2026-03-09T11:50:11.972Z",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "lastSeen": "2026-03-09T17:05:30.566Z",
     "sequentialId": 4894,
     "name": "[sf/tz] Ссылка на paywall 2 блока на EN и 1 блок на RU",
     "assignees": [
