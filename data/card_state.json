@@ -108,5 +108,16 @@
       "Almira Ibrayeva",
       "Konstantin Zaytsev"
     ]
+  },
+  "415ddd52bd33cd3e841d0af5": {
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "lastSeen": "2026-03-09T09:05:41.278Z",
+    "sequentialId": 5860,
+    "name": "[porndownload.online] Ошибка скачивания: статус \"failed\" после ожидания на странице подготовки файла",
+    "assignees": [
+      "Valeriy Puzakov",
+      "Dmitrii Pavlov"
+    ]
   }
 }
