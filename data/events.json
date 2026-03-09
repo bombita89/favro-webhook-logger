@@ -1010,5 +1010,25 @@
       "450eca361acacbda92cde88e": 105340381,
       "15563c2c50d3838a64e76261": 819324385
     }
+  },
+  {
+    "timestamp": "2026-03-09T09:05:41.278Z",
+    "cardCommonId": "415ddd52bd33cd3e841d0af5",
+    "cardId": "0d4e4e0a53f4f9b77ba4fd51",
+    "sequentialId": 5860,
+    "name": "[porndownload.online] Ошибка скачивания: статус \"failed\" после ожидания на странице подготовки файла",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "Valeriy Puzakov",
+      "Dmitrii Pavlov"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 99285283,
+      "450eca361acacbda92cde88e": 762159676,
+      "e70873a4ee5289566911d143": 7406322,
+      "9ee2b845e4e8262a6ef80c56": 68351006,
+      "15563c2c50d3838a64e76261": 86770511
+    }
   }
 ]
