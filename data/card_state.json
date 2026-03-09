@@ -78,9 +78,9 @@
     ]
   },
   "763397fd1f3528416896dd18": {
-    "columnId": "ddfdfc6d1de72aea01fb80e4",
-    "columnName": "Doing",
-    "lastSeen": "2026-03-06T13:36:23.335Z",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-09T14:39:13.816Z",
     "sequentialId": 5503,
     "name": "[veilviewer] Saved profiles frontend",
     "assignees": [
