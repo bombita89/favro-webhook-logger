@@ -129,5 +129,15 @@
     "assignees": [
       "Konstantin Zaytsev"
     ]
+  },
+  "c1d694fb40e66908a711e044": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-10T13:23:30.485Z",
+    "sequentialId": 5929,
+    "name": "снести яндекс Яндекс метрику для всех проектов, подключить Sentry",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ]
   }
 }
