@@ -1195,5 +1195,22 @@
     "moveDirection": "backward",
     "isReturn": true,
     "returnType": "code_review_rejection"
+  },
+  {
+    "timestamp": "2026-03-10T17:27:43.588Z",
+    "cardCommonId": "3037c025175e01e741cde47b",
+    "cardId": "2b9f24cceee6779c875e3187",
+    "sequentialId": 6038,
+    "name": "плейлисты на sf",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 49,
+      "ddfdfc6d1de72aea01fb80e4": 32655282,
+      "15563c2c50d3838a64e76261": 1429075
+    }
   }
 ]
