@@ -1155,5 +1155,23 @@
     },
     "previousColumn": "Ready For Dev",
     "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-03-10T13:23:30.485Z",
+    "cardCommonId": "c1d694fb40e66908a711e044",
+    "cardId": "92bb17ad3a3da24e01b865c7",
+    "sequentialId": 5929,
+    "name": "снести яндекс Яндекс метрику для всех проектов, подключить Sentry",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 342114132,
+      "3f6c5115c9ed29fb4c8e6490": 78,
+      "ddfdfc6d1de72aea01fb80e4": 20460739,
+      "15563c2c50d3838a64e76261": 604661381
+    }
   }
 ]
