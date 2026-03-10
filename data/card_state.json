@@ -99,9 +99,9 @@
     ]
   },
   "d9672881b0d7ecf09e2fa6a1": {
-    "columnId": "15563c2c50d3838a64e76261",
-    "columnName": "Ready For Dev",
-    "lastSeen": "2026-03-09T15:50:01.635Z",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-10T12:51:53.033Z",
     "sequentialId": 5779,
     "name": "[123tik.com] исправить ошибки",
     "assignees": [
