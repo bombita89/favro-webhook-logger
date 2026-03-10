@@ -139,5 +139,15 @@
     "assignees": [
       "Konstantin Zaytsev"
     ]
+  },
+  "3037c025175e01e741cde47b": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-10T17:27:43.588Z",
+    "sequentialId": 6038,
+    "name": "плейлисты на sf",
+    "assignees": [
+      "Sergey Ivontev"
+    ]
   }
 }
