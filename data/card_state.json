@@ -99,9 +99,9 @@
     ]
   },
   "d9672881b0d7ecf09e2fa6a1": {
-    "columnId": "15563c2c50d3838a64e76261",
-    "columnName": "Ready For Dev",
-    "lastSeen": "2026-03-11T16:10:19.586Z",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-11T18:29:16.454Z",
     "sequentialId": 5779,
     "name": "[123tik.com] исправить ошибки",
     "assignees": [
@@ -121,9 +121,9 @@
     ]
   },
   "1868cfe51959d158b32c059f": {
-    "columnId": "15563c2c50d3838a64e76261",
-    "columnName": "Ready For Dev",
-    "lastSeen": "2026-03-11T16:13:56.037Z",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-11T18:29:15.965Z",
     "sequentialId": 4894,
     "name": "[sf/tz] Ссылка на paywall 2 блока на EN и 1 блок на RU",
     "assignees": [
