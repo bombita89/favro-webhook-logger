@@ -1410,5 +1410,30 @@
     },
     "previousColumn": "Ready For Dev",
     "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-03-12T09:20:45.868Z",
+    "cardCommonId": "d9672881b0d7ecf09e2fa6a1",
+    "cardId": "2d9a59f3599303fc81b01ff9",
+    "sequentialId": 5779,
+    "name": "[123tik.com] исправить ошибки",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "Almira Ibrayeva",
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 949535012,
+      "3f6c5115c9ed29fb4c8e6490": 314551622,
+      "ddfdfc6d1de72aea01fb80e4": 8693583,
+      "e70873a4ee5289566911d143": 4513490,
+      "9ee2b845e4e8262a6ef80c56": 45160851,
+      "15563c2c50d3838a64e76261": 410441931
+    },
+    "previousColumn": "Code Review",
+    "moveDirection": "backward",
+    "isReturn": true,
+    "returnType": "code_review_rejection"
   }
 ]
