@@ -417,5 +417,26 @@
       "ddfdfc6d1de72aea01fb80e4": 9805838,
       "15563c2c50d3838a64e76261": 1671324338
     }
+  },
+  {
+    "timestamp": "2026-03-12T08:17:49.013Z",
+    "cardCommonId": "d9672881b0d7ecf09e2fa6a1",
+    "sequentialId": 5779,
+    "cardName": "[123tik.com] исправить ошибки",
+    "fromColumn": "Code Review",
+    "toColumn": "Ready For Dev",
+    "returnType": "code_review_rejection",
+    "assignees": [
+      "Almira Ibrayeva",
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 949535012,
+      "3f6c5115c9ed29fb4c8e6490": 314549105,
+      "ddfdfc6d1de72aea01fb80e4": 8693583,
+      "e70873a4ee5289566911d143": 4513490,
+      "9ee2b845e4e8262a6ef80c56": 45116704,
+      "15563c2c50d3838a64e76261": 406710916
+    }
   }
 ]
