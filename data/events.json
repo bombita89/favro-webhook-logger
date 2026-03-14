@@ -1435,5 +1435,22 @@
     "moveDirection": "backward",
     "isReturn": true,
     "returnType": "code_review_rejection"
+  },
+  {
+    "timestamp": "2026-03-14T09:09:51.890Z",
+    "cardCommonId": "5c34b8daa998be0aafb418a1",
+    "cardId": "bb1a1a4b70d5886c8badde72",
+    "sequentialId": 6065,
+    "name": "[veilviewer] перенести на http://lurkviewer.com",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "AbdulMalik Akhzamov"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 77,
+      "ddfdfc6d1de72aea01fb80e4": 154189893,
+      "15563c2c50d3838a64e76261": 6035490
+    }
   }
 ]
