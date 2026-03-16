@@ -1452,5 +1452,23 @@
       "ddfdfc6d1de72aea01fb80e4": 154189893,
       "15563c2c50d3838a64e76261": 6035490
     }
+  },
+  {
+    "timestamp": "2026-03-16T08:24:53.725Z",
+    "cardCommonId": "e53574783df617f6abe30cf8",
+    "cardId": "857ebcd77fec829ebf20953b",
+    "sequentialId": 5863,
+    "name": "[veilviwer] back to landing and search",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 431709104,
+      "3f6c5115c9ed29fb4c8e6490": 244458718,
+      "ddfdfc6d1de72aea01fb80e4": 103392251,
+      "15563c2c50d3838a64e76261": 777761694
+    }
   }
 ]
