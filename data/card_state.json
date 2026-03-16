@@ -169,5 +169,15 @@
     "assignees": [
       "Konstantin Zaytsev"
     ]
+  },
+  "4da16f90d930eb9679fea7ea": {
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "lastSeen": "2026-03-16T12:42:49.008Z",
+    "sequentialId": 5859,
+    "name": "[tz+sf] воронка dm ",
+    "assignees": [
+      "Anna Shcharbakova"
+    ]
   }
 }
