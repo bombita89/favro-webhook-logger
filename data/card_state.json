@@ -159,5 +159,15 @@
     "assignees": [
       "AbdulMalik Akhzamov"
     ]
+  },
+  "e53574783df617f6abe30cf8": {
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "lastSeen": "2026-03-16T08:24:53.725Z",
+    "sequentialId": 5863,
+    "name": "[veilviwer] back to landing and search",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ]
   }
 }
