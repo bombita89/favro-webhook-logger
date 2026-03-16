@@ -1470,5 +1470,23 @@
       "ddfdfc6d1de72aea01fb80e4": 103392251,
       "15563c2c50d3838a64e76261": 777761694
     }
+  },
+  {
+    "timestamp": "2026-03-16T12:42:49.008Z",
+    "cardCommonId": "4da16f90d930eb9679fea7ea",
+    "cardId": "18963e53a28fa78de644c02d",
+    "sequentialId": 5859,
+    "name": "[tz+sf] воронка dm ",
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "assignees": [
+      "Anna Shcharbakova"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 3202,
+      "3f6c5115c9ed29fb4c8e6490": 272846301,
+      "ddfdfc6d1de72aea01fb80e4": 67,
+      "4405671fd8390707bc5b4bd2": 2230
+    }
   }
 ]
