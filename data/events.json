@@ -1488,5 +1488,25 @@
       "ddfdfc6d1de72aea01fb80e4": 67,
       "4405671fd8390707bc5b4bd2": 2230
     }
+  },
+  {
+    "timestamp": "2026-03-17T07:32:52.407Z",
+    "cardCommonId": "4da16f90d930eb9679fea7ea",
+    "cardId": "18963e53a28fa78de644c02d",
+    "sequentialId": 5859,
+    "name": "[tz+sf] воронка dm ",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Anna Shcharbakova"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 3202,
+      "3f6c5115c9ed29fb4c8e6490": 272846386,
+      "ddfdfc6d1de72aea01fb80e4": 67802687,
+      "4405671fd8390707bc5b4bd2": 2230
+    },
+    "previousColumn": "Doing",
+    "moveDirection": "forward"
   }
 ]
