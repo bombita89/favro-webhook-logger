@@ -1589,5 +1589,56 @@
     },
     "previousColumn": "Ready For Dev",
     "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-03-18T17:28:29.783Z",
+    "cardCommonId": "bd30e8449e984ba1f854ca1e",
+    "cardId": "3d4e85a340c8e098fae93bf0",
+    "sequentialId": 6117,
+    "name": "mobile.de",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 55,
+      "ddfdfc6d1de72aea01fb80e4": 1792,
+      "450eca361acacbda92cde88e": 111571398
+    }
+  },
+  {
+    "timestamp": "2026-03-18T17:28:31.733Z",
+    "cardCommonId": "bd30e8449e984ba1f854ca1e",
+    "cardId": "3d4e85a340c8e098fae93bf0",
+    "sequentialId": 6117,
+    "name": "mobile.de",
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "assignees": [],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 1965,
+      "ddfdfc6d1de72aea01fb80e4": 1848,
+      "450eca361acacbda92cde88e": 111571398
+    },
+    "previousColumn": "Code Review",
+    "moveDirection": "backward",
+    "isReturn": true,
+    "returnType": "code_review_rejection"
+  },
+  {
+    "timestamp": "2026-03-18T17:28:33.521Z",
+    "cardCommonId": "bd30e8449e984ba1f854ca1e",
+    "cardId": "3d4e85a340c8e098fae93bf0",
+    "sequentialId": 6117,
+    "name": "mobile.de",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 2017,
+      "ddfdfc6d1de72aea01fb80e4": 3605,
+      "450eca361acacbda92cde88e": 111571398
+    },
+    "previousColumn": "Doing",
+    "moveDirection": "forward"
   }
 ]
