@@ -1569,5 +1569,25 @@
       "ddfdfc6d1de72aea01fb80e4": 191665634,
       "15563c2c50d3838a64e76261": 320997873
     }
+  },
+  {
+    "timestamp": "2026-03-18T13:17:01.173Z",
+    "cardCommonId": "e53574783df617f6abe30cf8",
+    "cardId": "857ebcd77fec829ebf20953b",
+    "sequentialId": 5863,
+    "name": "[veilviwer] back to landing and search",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 431709104,
+      "3f6c5115c9ed29fb4c8e6490": 244458776,
+      "ddfdfc6d1de72aea01fb80e4": 103392251,
+      "15563c2c50d3838a64e76261": 968089259
+    },
+    "previousColumn": "Ready For Dev",
+    "moveDirection": "forward"
   }
 ]
