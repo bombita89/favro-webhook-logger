@@ -1,1 +1,26 @@
-{}
+{
+  "b49d238d72886398db520a7d": {
+    "cardCommonId": "b49d238d72886398db520a7d",
+    "cardId": "4f065cd4e7aa540c4c004583",
+    "cardName": "[sf] тест для аналитики",
+    "sequentialId": 6130,
+    "tagDetectedAt": "2026-03-18T19:28:25.579Z",
+    "projectName": "sf",
+    "cardDescription": "",
+    "testUrls": [],
+    "slackThreadTs": "1773862105.773879",
+    "awaitingProperty": true,
+    "needsAnalysis": false,
+    "analysisPosted": false,
+    "suggestedEvents": [],
+    "eventsApproved": false,
+    "favroCommentPosted": false,
+    "codeReviewAt": null,
+    "qaAt": null,
+    "testCheckNeeded": false,
+    "testCheckDone": false,
+    "releasedAt": null,
+    "reportScheduledFor": null,
+    "reportDone": false
+  }
+}
