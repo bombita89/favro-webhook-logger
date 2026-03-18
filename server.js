@@ -283,8 +283,12 @@ function parseEventsFromText(text) {
 }
 
 // ─── Check if card has experiment tag ───
-function cardHasExperimentTag(card) {
-  const tags = card.tags || [];
+// Supports: ?trigger=experiment-tag in URL, card.tags array, or card.tagIds
+function cardHasExperimentTag(card, req) {
+  // Favro automation can pass ?trigger=experiment-tag in the webhook URL
+  if (req && req.query.trigger === "experiment-tag") return true;
+  // Standard tags array: [{name: "experiment"}, ...] or ["experiment", ...]
+  const tags = card.tags || card.listItems || [];
   return tags.some((t) => (t.name || t).toLowerCase() === EXPERIMENT_TAG);
 }
 
@@ -447,7 +451,7 @@ app.post("/favro-webhook", async (req, res) => {
   };
 
   const prev = cardState[cardCommonId];
-  const hasExpTag = cardHasExperimentTag(card);
+  const hasExpTag = cardHasExperimentTag(card, req);
   const isTrackedExperiment = !!experiments[cardCommonId];
 
   // Detect new experiment tag
