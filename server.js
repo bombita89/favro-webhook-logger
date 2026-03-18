@@ -144,6 +144,7 @@ async function ghWriteFile(filePath, jsonData, sha) {
 
 const fileShas = {};
 let propertyMapping = {};
+let measurementIdMap = {};
 
 async function loadStateFromGitHub() {
   if (!GH_TOKEN || !GH_REPO) {
@@ -165,6 +166,8 @@ async function loadStateFromGitHub() {
     if (retR) { returns.push(...retR.content); fileShas["returns.json"] = retR.sha; }
     const mapR = await ghReadFile("property_mapping.json");
     if (mapR) { Object.assign(propertyMapping, mapR.content); fileShas["property_mapping.json"] = mapR.sha; }
+    const midR = await ghReadFile("measurement_id_map.json");
+    if (midR) { Object.assign(measurementIdMap, midR.content); fileShas["measurement_id_map.json"] = midR.sha; }
 
     // FIX: normalize loaded experiments — ensure all required fields exist
     // (handles experiments created by older server versions)
@@ -583,10 +586,25 @@ async function handleSlackThreadReply(event) {
 
   // ── State: awaiting GA4 property ID ──
   if (exp.awaitingProperty) {
-    // Parse: "123456789" or "projectname 123456789" or "GA4 property ID 123456789"
-    const propertyMatch = text.match(/(\d{9,12})/);
-    if (propertyMatch) {
-      const propertyId = propertyMatch[1];
+    // Accept both G-XXXXXXXX measurement ID and numeric property ID
+    const gIdMatch = text.match(/\b(G-[A-Z0-9]{8,12})\b/i);
+    const numMatch = text.match(/(\d{9,12})/);
+    let propertyId = null;
+    if (gIdMatch) {
+      const gId = gIdMatch[1].toUpperCase();
+      propertyId = measurementIdMap[gId];
+      if (!propertyId) {
+        await postToSlack(
+          `Measurement ID \`${gId}\` не найден в списке известных счётчиков.\n` +
+          `Пришлите числовой Property ID из GA4 → Admin → Property Settings.`,
+          thread_ts
+        );
+        return;
+      }
+    } else if (numMatch) {
+      propertyId = numMatch[1];
+    }
+    if (propertyId) {
       exp.ga4PropertyId = propertyId;
       exp.awaitingProperty = false;
       exp.needsAnalysis = true;
@@ -612,7 +630,7 @@ async function handleSlackThreadReply(event) {
       return;
     } else {
       await postToSlack(
-        `Не нашла ID счётчика. Пришлите число, например: \`123456789\``,
+        `Не нашла ID счётчика. Пришлите \`G-XXXXXXXX\` или числовой Property ID, например: \`123456789\``,
         thread_ts
       );
       return;
