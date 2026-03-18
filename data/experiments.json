@@ -23,5 +23,30 @@
     "releasedAt": null,
     "reportScheduledFor": null,
     "reportDone": false
+  },
+  "c64bb2e525837e84a788eb1e": {
+    "cardCommonId": "c64bb2e525837e84a788eb1e",
+    "cardId": "8e6822538e1c0cb73aa40e47",
+    "cardName": "[sf] добавить лендинг тз на сайты",
+    "sequentialId": 6131,
+    "tagDetectedAt": "2026-03-18T20:18:12.255Z",
+    "projectName": "sf",
+    "ga4PropertyId": "394287718",
+    "cardDescription": "",
+    "testUrls": [],
+    "slackThreadTs": "1773865092.466429",
+    "awaitingProperty": false,
+    "needsAnalysis": true,
+    "analysisPosted": false,
+    "suggestedEvents": [],
+    "eventsApproved": false,
+    "favroCommentPosted": false,
+    "codeReviewAt": null,
+    "qaAt": null,
+    "testCheckNeeded": false,
+    "testCheckDone": false,
+    "releasedAt": null,
+    "reportScheduledFor": null,
+    "reportDone": false
   }
 }
