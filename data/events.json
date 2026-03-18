@@ -1831,5 +1831,56 @@
     "timeOnColumns": {
       "af8ed7601472c3e22faa634b": 375641
     }
+  },
+  {
+    "timestamp": "2026-03-18T20:18:49.413Z",
+    "cardCommonId": "b49d238d72886398db520a7d",
+    "cardId": "4f065cd4e7aa540c4c004583",
+    "sequentialId": 6130,
+    "name": "[sf] тест для аналитики",
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "assignees": [],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 9908161,
+      "3f6c5115c9ed29fb4c8e6490": 1692,
+      "ddfdfc6d1de72aea01fb80e4": 97
+    },
+    "previousColumn": "Backlog",
+    "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-03-18T20:18:53.551Z",
+    "cardCommonId": "b49d238d72886398db520a7d",
+    "cardId": "4f065cd4e7aa540c4c004583",
+    "sequentialId": 6130,
+    "name": "[sf] тест для аналитики",
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "assignees": [],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 9908161,
+      "3f6c5115c9ed29fb4c8e6490": 1692,
+      "ddfdfc6d1de72aea01fb80e4": 2452,
+      "9ee2b845e4e8262a6ef80c56": 1813
+    }
+  },
+  {
+    "timestamp": "2026-03-18T20:18:55.826Z",
+    "cardCommonId": "b49d238d72886398db520a7d",
+    "cardId": "4f065cd4e7aa540c4c004583",
+    "sequentialId": 6130,
+    "name": "[sf] тест для аналитики",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 9908161,
+      "3f6c5115c9ed29fb4c8e6490": 1788,
+      "ddfdfc6d1de72aea01fb80e4": 4619,
+      "9ee2b845e4e8262a6ef80c56": 1813
+    },
+    "previousColumn": "Doing",
+    "moveDirection": "forward"
   }
 ]
