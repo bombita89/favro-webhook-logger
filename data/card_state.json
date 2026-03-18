@@ -211,9 +211,9 @@
     "assignees": []
   },
   "b49d238d72886398db520a7d": {
-    "columnId": "af8ed7601472c3e22faa634b",
-    "columnName": "Backlog",
-    "lastSeen": "2026-03-18T19:32:54.080Z",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-18T20:18:55.826Z",
     "sequentialId": 6130,
     "name": "[sf] тест для аналитики",
     "assignees": []
