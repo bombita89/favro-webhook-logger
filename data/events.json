@@ -1703,5 +1703,18 @@
     "timeOnColumns": {
       "af8ed7601472c3e22faa634b": 3871505
     }
+  },
+  {
+    "timestamp": "2026-03-18T18:40:32.519Z",
+    "cardCommonId": "b49d238d72886398db520a7d",
+    "cardId": "4f065cd4e7aa540c4c004583",
+    "sequentialId": 6130,
+    "name": "[sf] тест для аналитики",
+    "columnId": "af8ed7601472c3e22faa634b",
+    "columnName": "Backlog",
+    "assignees": [],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 4013020
+    }
   }
 ]
