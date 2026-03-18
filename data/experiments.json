@@ -48,5 +48,29 @@
     "releasedAt": null,
     "reportScheduledFor": null,
     "reportDone": false
+  },
+  "b3f1f098621569891b6c9788": {
+    "cardCommonId": "b3f1f098621569891b6c9788",
+    "cardId": "2f216cf43159ba8e1e226873",
+    "cardName": "[televzr] добавить лендинг тз на сайты",
+    "sequentialId": 6132,
+    "tagDetectedAt": "2026-03-18T20:40:00.317Z",
+    "projectName": "televzr",
+    "cardDescription": "",
+    "testUrls": [],
+    "slackThreadTs": "1773866400.822579",
+    "awaitingProperty": true,
+    "needsAnalysis": false,
+    "analysisPosted": false,
+    "suggestedEvents": [],
+    "eventsApproved": false,
+    "favroCommentPosted": false,
+    "codeReviewAt": null,
+    "qaAt": null,
+    "testCheckNeeded": false,
+    "testCheckDone": false,
+    "releasedAt": null,
+    "reportScheduledFor": null,
+    "reportDone": false
   }
 }
