@@ -622,7 +622,7 @@ async function handleSlackThreadReply(event) {
 
       await postToSlack(
         `✅ Счётчик GA4 \`${propertyId}\` сохранён для \`${exp.projectName || "проекта"}\`.\n` +
-        `Анализирую существующие события — предложу список скоро.`,
+        `⏳ Анализ запрошен. Результат будет в треде в течение ~10 минут.`,
         thread_ts
       );
       saveStateLocal();
