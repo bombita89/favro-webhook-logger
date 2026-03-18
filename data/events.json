@@ -1508,5 +1508,24 @@
     },
     "previousColumn": "Doing",
     "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-03-18T07:34:41.672Z",
+    "cardCommonId": "39bb8ffc54103d2a87a321e9",
+    "cardId": "bb6ab88bfff99c018db1d315",
+    "sequentialId": 5938,
+    "name": "[pinterest downloader]: Нарисовать и добавить SVG иконки в ряд блоков",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Anna Shcharbakova",
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 415021248,
+      "3f6c5115c9ed29fb4c8e6490": 63,
+      "ddfdfc6d1de72aea01fb80e4": 66634092,
+      "15563c2c50d3838a64e76261": 20067280
+    }
   }
 ]
