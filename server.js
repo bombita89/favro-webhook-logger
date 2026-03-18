@@ -79,7 +79,9 @@ const experiments = {};
 // ─── GitHub API helpers ───
 async function ghApiRequest(method, filePath, body = null) {
   if (!GH_TOKEN || !GH_REPO) return null;
-  const url = `https://api.github.com/repos/${GH_REPO}/contents/data/${filePath}`;
+  // FIX: always include ?ref=GH_BRANCH for GET so we read from the correct branch
+  const base = `https://api.github.com/repos/${GH_REPO}/contents/data/${filePath}`;
+  const url = method === "GET" ? `${base}?ref=${GH_BRANCH}` : base;
   const headers = {
     Authorization: `Bearer ${GH_TOKEN}`,
     Accept: "application/vnd.github.v3+json",
@@ -90,8 +92,10 @@ async function ghApiRequest(method, filePath, body = null) {
   if (body) opts.body = JSON.stringify(body);
   const res = await fetch(url, opts);
   if (!res.ok && res.status !== 404) {
-    console.error(`GitHub API error ${res.status} for ${filePath}:`, await res.text());
-    return null;
+    const errText = await res.text();
+    console.error(`GitHub API error ${res.status} for ${filePath}:`, errText);
+    // Return status so callers can handle 409
+    return { __error: res.status, __body: errText };
   }
   if (res.status === 404) return null;
   return res.json();
@@ -99,9 +103,15 @@ async function ghApiRequest(method, filePath, body = null) {
 
 async function ghReadFile(filePath) {
   const data = await ghApiRequest("GET", filePath);
-  if (!data || !data.content) return null;
+  if (!data || data.__error || !data.content) return null;
   const content = Buffer.from(data.content, "base64").toString("utf8");
   return { content: JSON.parse(content), sha: data.sha };
+}
+
+async function ghGetCurrentSha(filePath) {
+  const data = await ghApiRequest("GET", filePath);
+  if (!data || data.__error) return null;
+  return data.sha || null;
 }
 
 async function ghWriteFile(filePath, jsonData, sha) {
@@ -112,11 +122,27 @@ async function ghWriteFile(filePath, jsonData, sha) {
     branch: GH_BRANCH,
   };
   if (sha) body.sha = sha;
-  return ghApiRequest("PUT", filePath, body);
+  const result = await ghApiRequest("PUT", filePath, body);
+
+  // FIX: on 409 (SHA conflict), fetch fresh SHA and retry once
+  if (result && result.__error === 409) {
+    console.log(`SHA conflict for ${filePath}, fetching fresh SHA and retrying...`);
+    const freshSha = await ghGetCurrentSha(filePath);
+    if (freshSha) {
+      body.sha = freshSha;
+      const retry = await ghApiRequest("PUT", filePath, body);
+      if (retry && !retry.__error) {
+        fileShas[filePath] = retry.content?.sha || freshSha;
+        console.log(`Retry succeeded for ${filePath}`);
+        return retry;
+      }
+    }
+    return null;
+  }
+  return result;
 }
 
 const fileShas = {};
-// Property mapping: projectName → GA4 propertyId (loaded from GitHub)
 let propertyMapping = {};
 
 async function loadStateFromGitHub() {
@@ -124,7 +150,7 @@ async function loadStateFromGitHub() {
     console.log("⚠ GitHub persistence disabled");
     return;
   }
-  console.log(`Loading state from GitHub (${GH_REPO})...`);
+  console.log(`Loading state from GitHub (${GH_REPO}, branch: ${GH_BRANCH})...`);
   try {
     for (const [key, target] of [
       ["card_state.json", cardState],
@@ -139,7 +165,28 @@ async function loadStateFromGitHub() {
     if (retR) { returns.push(...retR.content); fileShas["returns.json"] = retR.sha; }
     const mapR = await ghReadFile("property_mapping.json");
     if (mapR) { Object.assign(propertyMapping, mapR.content); fileShas["property_mapping.json"] = mapR.sha; }
+
+    // FIX: normalize loaded experiments — ensure all required fields exist
+    // (handles experiments created by older server versions)
+    for (const [id, exp] of Object.entries(experiments)) {
+      if (exp.awaitingProperty === undefined) {
+        exp.awaitingProperty = !exp.ga4PropertyId;
+      }
+      if (exp.needsAnalysis === undefined) exp.needsAnalysis = false;
+      if (exp.analysisPosted === undefined) exp.analysisPosted = false;
+      if (exp.suggestedEvents === undefined) exp.suggestedEvents = [];
+      if (exp.eventsApproved === undefined) exp.eventsApproved = false;
+      if (exp.favroCommentPosted === undefined) exp.favroCommentPosted = false;
+      if (exp.testCheckNeeded === undefined) exp.testCheckNeeded = false;
+      if (exp.testCheckDone === undefined) exp.testCheckDone = false;
+      if (exp.reportDone === undefined) exp.reportDone = false;
+    }
+
     console.log(`Loaded: ${Object.keys(cardState).length} cards, ${Object.keys(experiments).length} experiments, ${Object.keys(propertyMapping).length} property mappings`);
+    // Print experiment states for debugging
+    for (const exp of Object.values(experiments)) {
+      console.log(`  Exp #${exp.sequentialId} "${exp.cardName}": awaitingProperty=${exp.awaitingProperty}, ga4PropertyId=${exp.ga4PropertyId}, slackThreadTs=${exp.slackThreadTs}`);
+    }
   } catch (e) {
     console.error("Error loading from GitHub:", e.message);
   }
@@ -197,14 +244,11 @@ function classifyReturn(fromCol) {
   return "other_return";
 }
 
-// Extract project name from card title: "[savefrom.net] Task title" → "savefrom.net"
 function extractProjectFromName(cardName) {
   const match = (cardName || "").match(/^\[([^\]]+)\]/);
   return match ? match[1].trim().toLowerCase() : null;
 }
 
-// Extract TEST: urls from text (description or comment)
-// Matches: "TEST: url", "TEST SF: url", "TEST 1: url" etc.
 function extractTestUrls(text) {
   if (!text) return [];
   const regex = /TEST(?:\s+\w+)?:\s*(https?:\/\/[^\s\n]+)/gi;
@@ -214,21 +258,14 @@ function extractTestUrls(text) {
   return urls;
 }
 
-// Parse "Аналитика" section from Favro template description
-// Returns { analyticsContent, isDefault, fullDescription }
 const ANALYTICS_PLACEHOLDER = "Часть, заполняемая аналитиком";
 function parseDescriptionSections(description) {
   if (!description) return { analyticsContent: null, isDefault: true, monitoringContent: null };
-
-  // Find Аналитика section
   const analyticsMatch = description.match(/\*\*Аналитика\*\*\s*\n([\s\S]*?)(?=\n\*\*|$)/i);
   const analyticsContent = analyticsMatch ? analyticsMatch[1].trim() : null;
   const isDefault = !analyticsContent || analyticsContent.includes(ANALYTICS_PLACEHOLDER);
-
-  // Find Мониторинг и QA section
   const monitoringMatch = description.match(/\*\*Мониторинг и QA\*\*\s*\n([\s\S]*?)(?=\n\*\*|$)/i);
   const monitoringContent = monitoringMatch ? monitoringMatch[1].trim() : null;
-
   return { analyticsContent, isDefault, monitoringContent };
 }
 
@@ -310,16 +347,10 @@ async function addFavroComment(cardCommonId, commentText) {
   }
 }
 
-// Write analytics events table to card:
-// - if "Аналитика" section has default placeholder → update description in place
-// - otherwise → add as comment
 async function writeAnalyticsToFavro(exp, eventsTable) {
   const { cardId, cardCommonId, cardDescription } = exp;
-
   const { isDefault } = parseDescriptionSections(cardDescription);
-
   if (isDefault && cardId && cardDescription) {
-    // Replace the Аналитика section in description
     const SECTION_REGEX = /(\*\*Аналитика\*\*\s*\n)([\s\S]*?)(?=\n\*\*|$)/i;
     const newDesc = cardDescription.replace(SECTION_REGEX, (_, heading) => {
       return heading + eventsTable + "\n";
@@ -327,8 +358,6 @@ async function writeAnalyticsToFavro(exp, eventsTable) {
     const ok = await updateFavroCardDescription(cardId, newDesc);
     if (ok) { console.log("Updated Аналитика section in card description"); return; }
   }
-
-  // Fallback: add as comment
   await addFavroComment(cardCommonId, "**Analytics Events**\n\n" + eventsTable);
 }
 
@@ -347,7 +376,11 @@ async function postToSlack(text, threadTs = null) {
       body: JSON.stringify(body),
     });
     const data = await res.json();
-    if (!data.ok) console.error("Slack error:", data.error);
+    if (!data.ok) {
+      console.error("Slack postMessage error:", data.error, "| text:", text.slice(0, 60));
+    } else {
+      console.log(`✉ Slack sent (thread:${threadTs ? "yes" : "no"}): "${text.slice(0, 60)}"`);
+    }
     return data;
   } catch (e) {
     console.error("Slack request failed:", e.message);
@@ -389,20 +422,17 @@ async function handleExperimentTagAdded(card, now) {
   const { cardCommonId, cardId, sequentialId, name } = card;
   console.log(`🧪 Experiment: #${sequentialId} "${name}"`);
 
-  // Fetch full card data
   const fullCard = await fetchFavroCard(cardCommonId);
   const comments = await fetchFavroComments(cardCommonId);
 
   const description = fullCard?.description || "";
   const { monitoringContent } = parseDescriptionSections(description);
 
-  // Extract test URLs from description (Мониторинг section) and comments
   const testUrls = [
     ...extractTestUrls(monitoringContent),
     ...comments.flatMap((c) => extractTestUrls(c.comment)),
   ];
 
-  // Detect project from card title: "[savefrom.net] Title" → "savefrom.net"
   const projectName = extractProjectFromName(name);
   const ga4PropertyId = projectName ? propertyMapping[projectName] : null;
 
@@ -417,42 +447,33 @@ async function handleExperimentTagAdded(card, now) {
     cardDescription: description,
     testUrls,
     slackThreadTs: null,
-    // Analysis state
     awaitingProperty: !ga4PropertyId,
     needsAnalysis: !!ga4PropertyId,
     analysisPosted: false,
-    // Approval state
     suggestedEvents: [],
     eventsApproved: false,
     favroCommentPosted: false,
-    // Test check state
     codeReviewAt: null,
     qaAt: null,
     testCheckNeeded: false,
     testCheckDone: false,
-    // Release state
     releasedAt: null,
     reportScheduledFor: null,
     reportDone: false,
   };
 
-  // Build initial Slack message
   let msg = `🧪 *Эксперимент: #${sequentialId} ${name}*\n`;
+  msg += `Задача помечена \`experiment\`. Нужна помощь с аналитикой.\n\n`;
 
-  if (projectName) {
-    msg += `Проект: \`${projectName}\``;
-    if (ga4PropertyId) {
-      msg += ` → GA4 property \`${ga4PropertyId}\`\n`;
-      msg += `Анализирую существующие события... Предложу список скоро.`;
-    } else {
-      msg += ` — счётчик GA4 неизвестен.\n`;
-      msg += `Напишите ID счётчика GA4 для \`${projectName}\` (формат: *123456789*)`;
-    }
+  if (projectName && ga4PropertyId) {
+    msg += `Проект: \`${projectName}\` → GA4 property \`${ga4PropertyId}\`\n`;
+    msg += `Анализирую существующие события... Предложу список скоро.`;
+  } else if (projectName && !ga4PropertyId) {
+    msg += `Проект: \`${projectName}\` — счётчик GA4 неизвестен.\n`;
+    msg += `📊 Напишите ID счётчика GA4 (формат: *123456789*)`;
   } else {
-    msg += `Не могу определить проект из названия задачи.\n`;
-    msg += `Напишите название проекта и ID счётчика GA4 (пример: *savefrom.net 123456789*)`;
-    experiments[cardCommonId].awaitingProperty = true;
-    experiments[cardCommonId].needsAnalysis = false;
+    msg += `Не могу определить проект из названия задачи (нужен формат \`[Проект] Название\`).\n`;
+    msg += `📊 Напишите название проекта и ID счётчика GA4 (пример: *savefrom.net 123456789*)`;
   }
 
   if (testUrls.length > 0) {
@@ -461,6 +482,8 @@ async function handleExperimentTagAdded(card, now) {
 
   const res = await postToSlack(msg);
   if (res?.ts) experiments[cardCommonId].slackThreadTs = res.ts;
+  saveStateLocal();
+  scheduleSaveToGitHub();
 }
 
 async function handleCodeReview(card, now) {
@@ -468,7 +491,6 @@ async function handleCodeReview(card, now) {
   if (!exp || exp.codeReviewAt) return;
   console.log(`🔍 Code Review: #${card.sequentialId}`);
 
-  // Re-fetch comments in case test URL was added after card creation
   const comments = await fetchFavroComments(card.cardCommonId);
   const { monitoringContent } = parseDescriptionSections(exp.cardDescription);
   const testUrls = [
@@ -496,6 +518,8 @@ async function handleCodeReview(card, now) {
   }
 
   await postToSlack(msg, exp.slackThreadTs);
+  saveStateLocal();
+  scheduleSaveToGitHub();
 }
 
 async function handleQATodo(card, now) {
@@ -504,7 +528,6 @@ async function handleQATodo(card, now) {
   console.log(`🧪 QA Todo: #${card.sequentialId}`);
 
   exp.qaAt = now;
-  // Trigger same test check logic as Code Review
   if (!exp.testCheckNeeded && exp.suggestedEvents.length > 0) {
     const comments = await fetchFavroComments(card.cardCommonId);
     const { monitoringContent } = parseDescriptionSections(exp.cardDescription);
@@ -522,6 +545,8 @@ async function handleQATodo(card, now) {
       );
     }
   }
+  saveStateLocal();
+  scheduleSaveToGitHub();
 }
 
 async function handleReleased(card, now) {
@@ -538,6 +563,8 @@ async function handleReleased(card, now) {
     `Через 10 дней (${reportDate.toLocaleDateString("ru-RU")}) подготовлю GA4-отчёт.`,
     exp.slackThreadTs
   );
+  saveStateLocal();
+  scheduleSaveToGitHub();
 }
 
 // ─── Slack thread reply handler ───
@@ -546,14 +573,17 @@ async function handleSlackThreadReply(event) {
   if (!text) return;
 
   const exp = Object.values(experiments).find((e) => e.slackThreadTs === thread_ts);
-  if (!exp) return;
+  if (!exp) {
+    console.log(`⚠ No experiment found for thread_ts=${thread_ts}`);
+    return;
+  }
 
-  console.log(`💬 Reply for #${exp.sequentialId}: "${text.slice(0, 60)}"`);
+  console.log(`💬 Reply for #${exp.sequentialId}: "${text.slice(0, 80)}" | awaitingProperty=${exp.awaitingProperty}`);
   const lower = text.toLowerCase().trim();
 
-  // ── State: awaiting GA4 property answer ──
+  // ── State: awaiting GA4 property ID ──
   if (exp.awaitingProperty) {
-    // Expected: "123456789" or "savefrom.net 123456789" or "savefrom 123456789"
+    // Parse: "123456789" or "projectname 123456789" or "GA4 property ID 123456789"
     const propertyMatch = text.match(/(\d{9,12})/);
     if (propertyMatch) {
       const propertyId = propertyMatch[1];
@@ -561,7 +591,12 @@ async function handleSlackThreadReply(event) {
       exp.awaitingProperty = false;
       exp.needsAnalysis = true;
 
-      // Save to property mapping if project is known
+      // Extract project name if provided alongside property ID (e.g. "savefrom.net 123456789")
+      const projectMatch = text.match(/([a-z0-9][-a-z0-9.]+[a-z0-9])\s+\d{9,12}/i);
+      if (projectMatch && !exp.projectName) {
+        exp.projectName = projectMatch[1].toLowerCase();
+      }
+
       if (exp.projectName) {
         propertyMapping[exp.projectName] = propertyId;
         console.log(`Saved mapping: ${exp.projectName} → ${propertyId}`);
@@ -621,6 +656,9 @@ async function handleSlackThreadReply(event) {
     );
     saveStateLocal();
     scheduleSaveToGitHub();
+  } else {
+    // Unknown message — let the user know what the bot expects
+    console.log(`💬 Unrecognized reply for #${exp.sequentialId}: "${text.slice(0, 60)}"`);
   }
 }
 
@@ -644,6 +682,9 @@ async function pollSlackThreads() {
       const messages = (data.messages || []).filter(
         (m) => m.ts !== exp.slackThreadTs && m.ts > oldest && !m.bot_id
       );
+      if (messages.length > 0) {
+        console.log(`📨 Poll: ${messages.length} new reply(ies) for #${exp.sequentialId}`);
+      }
       for (const msg of messages) {
         await handleSlackThreadReply({ text: msg.text, thread_ts: exp.slackThreadTs, user: msg.user });
         lastSeenTs[exp.cardCommonId] = msg.ts;
