@@ -1908,5 +1908,18 @@
     "timeOnColumns": {
       "af8ed7601472c3e22faa634b": 2616569
     }
+  },
+  {
+    "timestamp": "2026-03-18T21:23:25.821Z",
+    "cardCommonId": "c505f2b77f9d31893a9f6e33",
+    "cardId": "01f175f2e6488ca2dee5d4fd",
+    "sequentialId": 6133,
+    "name": "[televzr] добавить лендинг тз на сайты",
+    "columnId": "af8ed7601472c3e22faa634b",
+    "columnName": "Backlog",
+    "assignees": [],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 431
+    }
   }
 ]
