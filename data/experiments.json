@@ -11,30 +11,9 @@
     "testUrls": [],
     "slackThreadTs": "1773862105.773879",
     "awaitingProperty": false,
-    "needsAnalysis": false,
-    "analysisPosted": true,
-    "suggestedEvents": [
-      {
-        "name": "tzLanding_plan_click",
-        "description": "пользователь кликнул на конкретный тарифный план"
-      },
-      {
-        "name": "experiment_site_exposure",
-        "description": "показ эксперимента на конкретном insta-сайте (fastdl / storiesig / gramsnap и т.д.)"
-      },
-      {
-        "name": "tzLanding_payment_start",
-        "description": "пользователь перешёл к оплате с лендинга"
-      },
-      {
-        "name": "tzLanding_ab_variant",
-        "description": "какой вариант лендинга был показан"
-      },
-      {
-        "name": "tzLanding_close_click",
-        "description": "закрыл лендинг"
-      }
-    ],
+    "needsAnalysis": true,
+    "analysisPosted": false,
+    "suggestedEvents": [],
     "eventsApproved": false,
     "favroCommentPosted": false,
     "codeReviewAt": null,
