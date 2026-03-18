@@ -1,1 +1,18 @@
-{}
+{
+  "test-exp-001": {
+    "cardCommonId": "test-exp-001",
+    "cardName": "Тестовый эксперимент",
+    "sequentialId": 1234,
+    "tagDetectedAt": "2026-03-18T17:51:10.321Z",
+    "slackThreadTs": "1773856270.436629",
+    "suggestedEvents": [],
+    "eventsApproved": false,
+    "favroCommentPosted": false,
+    "codeReviewAt": null,
+    "ga4CheckNeeded": false,
+    "ga4CheckDone": false,
+    "releasedAt": null,
+    "reportScheduledFor": null,
+    "reportDone": false
+  }
+}
