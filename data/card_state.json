@@ -249,5 +249,15 @@
     "sequentialId": 6133,
     "name": "[televzr] добавить лендинг тз на сайты",
     "assignees": []
+  },
+  "d6b0ff1ac34e665468502288": {
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "lastSeen": "2026-03-18T21:34:53.517Z",
+    "sequentialId": 6062,
+    "name": "[tz light] безлимитное скачивание dm ",
+    "assignees": [
+      "Sergey Ivontev"
+    ]
   }
 }
