@@ -479,5 +479,20 @@
       "9ee2b845e4e8262a6ef80c56": 84092716,
       "15563c2c50d3838a64e76261": 6035596
     }
+  },
+  {
+    "timestamp": "2026-03-18T17:28:31.733Z",
+    "cardCommonId": "bd30e8449e984ba1f854ca1e",
+    "sequentialId": 6117,
+    "cardName": "mobile.de",
+    "fromColumn": "Code Review",
+    "toColumn": "Doing",
+    "returnType": "code_review_rejection",
+    "assignees": [],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 1965,
+      "ddfdfc6d1de72aea01fb80e4": 1848,
+      "450eca361acacbda92cde88e": 111571398
+    }
   }
 ]
