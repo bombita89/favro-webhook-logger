@@ -1527,5 +1527,29 @@
       "ddfdfc6d1de72aea01fb80e4": 66634092,
       "15563c2c50d3838a64e76261": 20067280
     }
+  },
+  {
+    "timestamp": "2026-03-18T08:39:02.002Z",
+    "cardCommonId": "5c34b8daa998be0aafb418a1",
+    "cardId": "bb1a1a4b70d5886c8badde72",
+    "sequentialId": 6065,
+    "name": "[veilviewer] перенести на http://lurkviewer.com",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "AbdulMalik Akhzamov",
+      "Aldar Dorzhiev"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 170902896,
+      "ddfdfc6d1de72aea01fb80e4": 154189893,
+      "e70873a4ee5289566911d143": 88755630,
+      "9ee2b845e4e8262a6ef80c56": 84092716,
+      "15563c2c50d3838a64e76261": 6035596
+    },
+    "previousColumn": "Code Review",
+    "moveDirection": "backward",
+    "isReturn": true,
+    "returnType": "code_review_rejection"
   }
 ]
