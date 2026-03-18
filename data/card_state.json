@@ -179,5 +179,16 @@
     "assignees": [
       "Anna Shcharbakova"
     ]
+  },
+  "39bb8ffc54103d2a87a321e9": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-18T07:34:41.672Z",
+    "sequentialId": 5938,
+    "name": "[pinterest downloader]: Нарисовать и добавить SVG иконки в ряд блоков",
+    "assignees": [
+      "Anna Shcharbakova",
+      "Sergey Ivontev"
+    ]
   }
 }
