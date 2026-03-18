@@ -544,9 +544,46 @@ app.post("/api/save", async (req, res) => {
   res.json({ ok: true });
 });
 
+// ─── Slack polling (check thread replies every 60s, no Events API needed) ───
+const lastSeenTs = {}; // cardCommonId → last processed message ts
+
+async function pollSlackThreads() {
+  const activeExperiments = Object.values(experiments).filter(
+    (e) => e.slackThreadTs && !e.reportDone && !e.eventsApproved
+  );
+  if (activeExperiments.length === 0) return;
+
+  for (const exp of activeExperiments) {
+    try {
+      const oldest = lastSeenTs[exp.cardCommonId] || exp.slackThreadTs;
+      const url = `https://slack.com/api/conversations.replies?channel=${SLACK_CHANNEL_ID}&ts=${exp.slackThreadTs}&oldest=${oldest}&limit=20`;
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${SLACK_BOT_TOKEN}` },
+      });
+      const data = await res.json();
+      if (!data.ok) { console.error("Slack poll error:", data.error); continue; }
+
+      const messages = (data.messages || []).filter(
+        (m) => m.ts !== exp.slackThreadTs && m.ts > oldest && !m.bot_id
+      );
+
+      for (const msg of messages) {
+        await handleSlackThreadReply({ text: msg.text, thread_ts: exp.slackThreadTs, user: msg.user });
+        lastSeenTs[exp.cardCommonId] = msg.ts;
+      }
+    } catch (e) {
+      console.error(`Poll error for #${exp.sequentialId}:`, e.message);
+    }
+  }
+}
+
 // ─── Start ───
 async function start() {
   await loadStateFromGitHub();
+  if (SLACK_BOT_TOKEN && SLACK_CHANNEL_ID) {
+    setInterval(pollSlackThreads, 60 * 1000);
+    console.log("Slack polling: ON (60s)");
+  }
   const PORT = process.env.PORT || 10000;
   app.listen(PORT, () => {
     console.log(`Server listening on :${PORT}`);
