@@ -5,27 +5,15 @@ const path = require("path");
 const app = express();
 app.use(express.json({ limit: "1mb" }));
 
-// ─── GitHub persistence config ───
+// ─── Config ───
 const GH_TOKEN = process.env.GH_TOKEN;
 const GH_REPO = process.env.GH_REPO;
 const GH_BRANCH = process.env.GH_BRANCH || "main";
-
-// ─── Slack config ───
 const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
-const SLACK_CHANNEL_ID = process.env.SLACK_CHANNEL_ID; // e.g. "C01234ABCDE"
-const SLACK_SIGNING_SECRET = process.env.SLACK_SIGNING_SECRET;
-
-// ─── Favro API config ───
+const SLACK_CHANNEL_ID = process.env.SLACK_CHANNEL_ID;
 const FAVRO_EMAIL = process.env.FAVRO_EMAIL;
 const FAVRO_API_TOKEN = process.env.FAVRO_API_TOKEN;
 const FAVRO_ORG_ID = process.env.FAVRO_ORG_ID;
-const FAVRO_WIDGET_ID = process.env.FAVRO_WIDGET_ID; // optional: limit to specific board
-
-// ─── GA4 config ───
-const GA4_PROPERTY_ID = process.env.GA4_PROPERTY_ID || "196785998";
-const GA4_SERVICE_ACCOUNT_JSON = process.env.GA4_SERVICE_ACCOUNT_JSON; // full JSON string
-
-// ─── Experiment tag to watch ───
 const EXPERIMENT_TAG = (process.env.EXPERIMENT_TAG || "experiment").toLowerCase();
 
 // ─── Column config ───
@@ -147,19 +135,16 @@ async function loadStateFromGitHub() {
     if (stateResult) {
       Object.assign(cardState, stateResult.content);
       fileShas["card_state.json"] = stateResult.sha;
-      console.log(`  Loaded state for ${Object.keys(stateResult.content).length} cards`);
     }
     const eventsResult = await ghReadFile("events.json");
     if (eventsResult) {
       allEvents.push(...eventsResult.content);
       fileShas["events.json"] = eventsResult.sha;
-      console.log(`  Loaded ${eventsResult.content.length} events`);
     }
     const returnsResult = await ghReadFile("returns.json");
     if (returnsResult) {
       returns.push(...returnsResult.content);
       fileShas["returns.json"] = returnsResult.sha;
-      console.log(`  Loaded ${returnsResult.content.length} returns`);
     }
     const experimentsResult = await ghReadFile("experiments.json");
     if (experimentsResult) {
@@ -174,31 +159,25 @@ async function loadStateFromGitHub() {
 }
 
 let saveTimeout = null;
-const SAVE_DELAY_MS = 5000;
-
 function scheduleSaveToGitHub() {
   if (!GH_TOKEN || !GH_REPO) return;
   if (saveTimeout) clearTimeout(saveTimeout);
-  saveTimeout = setTimeout(() => saveToGitHub(), SAVE_DELAY_MS);
+  saveTimeout = setTimeout(() => saveToGitHub(), 5000);
 }
 
 async function saveToGitHub() {
   if (!GH_TOKEN || !GH_REPO) return;
-  console.log("Saving state to GitHub...");
   try {
-    const files = [
+    for (const f of [
       { name: "card_state.json", data: cardState },
       { name: "events.json", data: allEvents },
       { name: "returns.json", data: returns },
       { name: "experiments.json", data: experiments },
-    ];
-    for (const f of files) {
+    ]) {
       const result = await ghWriteFile(f.name, f.data, fileShas[f.name]);
-      if (result && result.content) {
-        fileShas[f.name] = result.content.sha;
-      }
+      if (result?.content) fileShas[f.name] = result.content.sha;
     }
-    console.log("  GitHub save complete");
+    console.log("GitHub save complete");
   } catch (e) {
     console.error("Error saving to GitHub:", e.message);
   }
@@ -208,10 +187,14 @@ const DATA_DIR = path.join(__dirname, "data");
 function saveStateLocal() {
   try {
     if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-    fs.writeFileSync(path.join(DATA_DIR, "card_state.json"), JSON.stringify(cardState, null, 2));
-    fs.writeFileSync(path.join(DATA_DIR, "events.json"), JSON.stringify(allEvents, null, 2));
-    fs.writeFileSync(path.join(DATA_DIR, "returns.json"), JSON.stringify(returns, null, 2));
-    fs.writeFileSync(path.join(DATA_DIR, "experiments.json"), JSON.stringify(experiments, null, 2));
+    for (const [name, data] of Object.entries({
+      "card_state.json": cardState,
+      "events.json": allEvents,
+      "returns.json": returns,
+      "experiments.json": experiments,
+    })) {
+      fs.writeFileSync(path.join(DATA_DIR, name), JSON.stringify(data, null, 2));
+    }
   } catch (e) {
     console.error("Local save failed:", e.message);
   }
@@ -229,10 +212,10 @@ function classifyReturn(fromCol) {
   return "other_return";
 }
 
-// ─── Slack helpers ───
+// ─── Slack ───
 async function postToSlack(text, threadTs = null) {
   if (!SLACK_BOT_TOKEN || !SLACK_CHANNEL_ID) {
-    console.log("[SLACK MOCK]", text);
+    console.log("[SLACK MOCK]", threadTs ? `(thread ${threadTs})` : "", text.slice(0, 120));
     return { ts: Date.now().toString(), ok: true };
   }
   const body = { channel: SLACK_CHANNEL_ID, text };
@@ -240,10 +223,7 @@ async function postToSlack(text, threadTs = null) {
   try {
     const res = await fetch("https://slack.com/api/chat.postMessage", {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${SLACK_BOT_TOKEN}`,
-        "Content-Type": "application/json",
-      },
+      headers: { Authorization: `Bearer ${SLACK_BOT_TOKEN}`, "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
     const data = await res.json();
@@ -255,29 +235,25 @@ async function postToSlack(text, threadTs = null) {
   }
 }
 
-// ─── Favro API helpers ───
-function favroHeaders() {
-  const creds = Buffer.from(`${FAVRO_EMAIL}:${FAVRO_API_TOKEN}`).toString("base64");
-  return {
-    Authorization: `Basic ${creds}`,
-    "organizationId": FAVRO_ORG_ID,
-    "Content-Type": "application/json",
-  };
-}
-
+// ─── Favro API ───
 async function addFavroComment(cardCommonId, commentText) {
   if (!FAVRO_EMAIL || !FAVRO_API_TOKEN || !FAVRO_ORG_ID) {
     console.log("[FAVRO MOCK] Comment on", cardCommonId, ":", commentText.slice(0, 80));
     return { ok: true };
   }
   try {
+    const creds = Buffer.from(`${FAVRO_EMAIL}:${FAVRO_API_TOKEN}`).toString("base64");
     const res = await fetch("https://favro.com/api/1.0/comments", {
       method: "POST",
-      headers: favroHeaders(),
+      headers: {
+        Authorization: `Basic ${creds}`,
+        organizationId: FAVRO_ORG_ID,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ cardCommonId, comment: commentText }),
     });
     const data = await res.json();
-    if (data.errors) console.error("Favro comment error:", data.errors);
+    if (data.errors) console.error("Favro comment error:", JSON.stringify(data.errors));
     return data;
   } catch (e) {
     console.error("Favro request failed:", e.message);
@@ -285,357 +261,138 @@ async function addFavroComment(cardCommonId, commentText) {
   }
 }
 
-// ─── GA4 Data API helper ───
-// Calls GA4 Data API using a service account (JWT auth)
-async function getGA4EventCounts(eventNames, daysAgo = 7) {
-  if (!GA4_SERVICE_ACCOUNT_JSON) {
-    console.log("[GA4 MOCK] Would check events:", eventNames);
-    return null;
-  }
-  try {
-    const sa = JSON.parse(GA4_SERVICE_ACCOUNT_JSON);
-    const token = await getServiceAccountToken(sa, "https://www.googleapis.com/auth/analytics.readonly");
-
-    const res = await fetch(
-      `https://analyticsdata.googleapis.com/v1beta/properties/${GA4_PROPERTY_ID}:runReport`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          dateRanges: [{ startDate: `${daysAgo}daysAgo`, endDate: "yesterday" }],
-          dimensions: [{ name: "eventName" }],
-          metrics: [{ name: "eventCount" }, { name: "totalUsers" }],
-          dimensionFilter: {
-            filter: {
-              fieldName: "eventName",
-              inListFilter: { values: eventNames },
-            },
-          },
-        }),
-      }
-    );
-    const data = await res.json();
-    if (data.error) {
-      console.error("GA4 API error:", data.error.message);
-      return null;
-    }
-    // Parse rows
-    const results = {};
-    for (const row of data.rows || []) {
-      const name = row.dimensionValues[0].value;
-      const count = parseInt(row.metricValues[0].value) || 0;
-      const users = parseInt(row.metricValues[1].value) || 0;
-      results[name] = { count, users };
-    }
-    return results;
-  } catch (e) {
-    console.error("GA4 request failed:", e.message);
-    return null;
-  }
-}
-
-// Minimal JWT implementation for service account auth
-async function getServiceAccountToken(sa, scope) {
-  const now = Math.floor(Date.now() / 1000);
-  const header = { alg: "RS256", typ: "JWT" };
-  const claim = {
-    iss: sa.client_email,
-    scope,
-    aud: "https://oauth2.googleapis.com/token",
-    exp: now + 3600,
-    iat: now,
-  };
-  const encode = (obj) => Buffer.from(JSON.stringify(obj)).toString("base64url");
-  const unsigned = `${encode(header)}.${encode(claim)}`;
-
-  // Sign with RS256
-  const { createSign } = require("crypto");
-  const sign = createSign("RSA-SHA256");
-  sign.update(unsigned);
-  const signature = sign.sign(sa.private_key, "base64url");
-  const jwt = `${unsigned}.${signature}`;
-
-  const res = await fetch("https://oauth2.googleapis.com/token", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${jwt}`,
-  });
-  const data = await res.json();
-  if (!data.access_token) throw new Error(`Token error: ${JSON.stringify(data)}`);
-  return data.access_token;
-}
-
-// ─── Format events table for Favro comment ───
+// ─── Format events table for Favro ───
 function formatEventsTable(events) {
-  const header = "**Analytics Events**\n\n| Event | Description | Status |\n|---|---|---|";
   const rows = events.map((e) => `| \`${e.name}\` | ${e.description || "—"} | ⬜ Planned |`);
-  return [header, ...rows].join("\n");
+  return ["**Analytics Events**", "", "| Event | Description | Status |", "|---|---|---|", ...rows].join("\n");
 }
 
-// ─── Parse events from Slack message text ───
-// Expects lines like: "- event_name: description" or "event_name - description"
+// ─── Parse events from Slack message ───
 function parseEventsFromText(text) {
-  const lines = text.split("\n");
   const events = [];
-  for (const line of lines) {
+  for (const line of text.split("\n")) {
     const trimmed = line.trim().replace(/^[-*•]\s*/, "");
     if (!trimmed) continue;
-
-    // Format: event_name: description
     const colonMatch = trimmed.match(/^([a-z_][a-z0-9_]*)\s*:\s*(.+)$/i);
-    if (colonMatch) {
-      events.push({ name: colonMatch[1], description: colonMatch[2].trim() });
-      continue;
-    }
-    // Format: event_name - description
+    if (colonMatch) { events.push({ name: colonMatch[1], description: colonMatch[2].trim() }); continue; }
     const dashMatch = trimmed.match(/^([a-z_][a-z0-9_]*)\s+-\s+(.+)$/i);
-    if (dashMatch) {
-      events.push({ name: dashMatch[1], description: dashMatch[2].trim() });
-      continue;
-    }
-    // Just an event name
-    if (/^[a-z_][a-z0-9_]*$/.test(trimmed)) {
-      events.push({ name: trimmed, description: "" });
-    }
+    if (dashMatch) { events.push({ name: dashMatch[1], description: dashMatch[2].trim() }); continue; }
+    if (/^[a-z_][a-z0-9_]*$/.test(trimmed)) events.push({ name: trimmed, description: "" });
   }
   return events;
 }
 
-// ─── Experiment workflow ───
-
+// ─── Check if card has experiment tag ───
 function cardHasExperimentTag(card) {
-  // Favro card.tags is array of tag objects: [{tagId, name, color}, ...]
-  // Also try card.customFields or other locations
-  const tags = card.tags || card.customFields?.tags || [];
+  const tags = card.tags || [];
   return tags.some((t) => (t.name || t).toLowerCase() === EXPERIMENT_TAG);
 }
 
-async function handleExperimentTagAdded(card, now) {
-  const { cardCommonId, sequentialId, name } = card;
-  console.log(`🧪 Experiment tag detected on #${sequentialId} "${name}"`);
+// ─── Experiment workflow handlers ───
 
-  experiments[cardCommonId] = {
-    cardCommonId,
-    cardName: name,
-    sequentialId,
+async function handleExperimentTagAdded(card, now) {
+  console.log(`🧪 Experiment: #${card.sequentialId} "${card.name}"`);
+  experiments[card.cardCommonId] = {
+    cardCommonId: card.cardCommonId,
+    cardName: card.name,
+    sequentialId: card.sequentialId,
     tagDetectedAt: now,
     slackThreadTs: null,
     suggestedEvents: [],
     eventsApproved: false,
     favroCommentPosted: false,
     codeReviewAt: null,
+    ga4CheckNeeded: false,
     ga4CheckDone: false,
-    ga4CheckResult: null,
     releasedAt: null,
     reportScheduledFor: null,
     reportDone: false,
   };
 
   const msg =
-    `🧪 *Эксперимент: #${sequentialId} ${name}*\n` +
-    `Задача помечена тегом \`experiment\`. Нужна помощь с аналитикой.\n\n` +
-    `Если есть вопросы по задаче — пишите в тред. ` +
-    `Если вопросов нет, предложите список событий в формате:\n` +
+    `🧪 *Эксперимент: #${card.sequentialId} ${card.name}*\n` +
+    `Задача помечена \`experiment\`. Нужна помощь с аналитикой.\n\n` +
+    `Если есть вопросы по задаче — пишите в тред.\n` +
+    `Если вопросов нет — предложите список событий в формате:\n` +
     `\`event_name: описание\`\n` +
-    `_(напишите \`approve\` когда список готов к записи в Favro)_`;
+    `_Когда список готов → напишите \`approve\` чтобы записать в Favro._`;
 
-  const slackRes = await postToSlack(msg);
-  if (slackRes?.ts) {
-    experiments[cardCommonId].slackThreadTs = slackRes.ts;
-  }
+  const res = await postToSlack(msg);
+  if (res?.ts) experiments[card.cardCommonId].slackThreadTs = res.ts;
 }
 
 async function handleCodeReview(card, now) {
-  const { cardCommonId, sequentialId, name } = card;
-  const exp = experiments[cardCommonId];
-  if (!exp || exp.ga4CheckDone) return;
+  const exp = experiments[card.cardCommonId];
+  if (!exp || exp.codeReviewAt) return;
+  console.log(`🔍 Code Review — marking GA4 check needed for #${card.sequentialId}`);
 
-  console.log(`🔍 Code Review — checking GA4 for #${sequentialId} "${name}"`);
   exp.codeReviewAt = now;
+  exp.ga4CheckNeeded = true;
+  exp.ga4CheckDone = false;
 
-  const eventNames = exp.suggestedEvents.map((e) => e.name);
+  const eventCount = exp.suggestedEvents.length;
+  const msg = eventCount > 0
+    ? `🔍 *#${card.sequentialId} ${card.name}* — Code Review\n` +
+      `Проверю GA4 (${eventCount} событий) — результат будет скоро.`
+    : `🔍 *#${card.sequentialId} ${card.name}* — Code Review\n` +
+      `⚠️ Список событий не задан — нечего проверять в GA4.`;
 
-  if (eventNames.length === 0) {
-    const msg =
-      `🔍 *#${sequentialId} ${name}* перешла в Code Review\n` +
-      `Список событий не был добавлен в Favro — нет событий для проверки в GA4.`;
-    const threadTs = exp.slackThreadTs;
-    await postToSlack(msg, threadTs);
-    return;
-  }
-
-  // Check GA4
-  const ga4Results = await getGA4EventCounts(eventNames, 3);
-  exp.ga4CheckDone = true;
-  exp.ga4CheckResult = ga4Results;
-
-  let report;
-  if (!ga4Results) {
-    report =
-      `🔍 *#${sequentialId} ${name}* — Code Review\n` +
-      `GA4 проверить не удалось (нет доступа к API). Проверьте вручную:\n` +
-      eventNames.map((e) => `• \`${e}\``).join("\n");
-  } else {
-    const lines = eventNames.map((e) => {
-      const data = ga4Results[e];
-      if (!data || data.count === 0) {
-        return `• \`${e}\` — ❌ *не найдено* (за 3 дня)`;
-      }
-      return `• \`${e}\` — ✅ ${data.count.toLocaleString()} событий, ${data.users.toLocaleString()} юзеров`;
-    });
-    const allFiring = eventNames.every((e) => ga4Results[e]?.count > 0);
-    report =
-      `${allFiring ? "✅" : "⚠️"} *#${sequentialId} ${name}* — Code Review, GA4 check\n` +
-      lines.join("\n");
-    if (!allFiring) {
-      report += `\n\n⚠️ Не все события фиксируются — проверьте интеграцию!`;
-    }
-  }
-
-  await postToSlack(report, exp.slackThreadTs);
-}
-
-async function handleReleased(card, now) {
-  const { cardCommonId, sequentialId, name } = card;
-  const exp = experiments[cardCommonId];
-  if (!exp || exp.releasedAt) return;
-
-  console.log(`🚀 Released — scheduling 10-day report for #${sequentialId} "${name}"`);
-  exp.releasedAt = now;
-  const reportDate = new Date(new Date(now).getTime() + 10 * 24 * 60 * 60 * 1000);
-  exp.reportScheduledFor = reportDate.toISOString();
-  exp.reportDone = false;
-
-  const msg =
-    `🚀 *#${sequentialId} ${name}* — задача релизнута!\n` +
-    `Через 10 дней (${reportDate.toLocaleDateString("ru-RU")}) подготовлю GA4-отчёт по результатам эксперимента.`;
   await postToSlack(msg, exp.slackThreadTs);
 }
 
-async function runScheduledReports() {
-  const now = new Date();
-  for (const [cardCommonId, exp] of Object.entries(experiments)) {
-    if (exp.reportDone || !exp.reportScheduledFor) continue;
-    const scheduledFor = new Date(exp.reportScheduledFor);
-    if (now < scheduledFor) continue;
+async function handleReleased(card, now) {
+  const exp = experiments[card.cardCommonId];
+  if (!exp || exp.releasedAt) return;
+  console.log(`🚀 Released: #${card.sequentialId} — scheduling 10-day report`);
 
-    console.log(`📊 Running 10-day report for #${exp.sequentialId} "${exp.cardName}"`);
-    exp.reportDone = true; // mark early to avoid double execution
+  exp.releasedAt = now;
+  const reportDate = new Date(new Date(now).getTime() + 10 * 24 * 60 * 60 * 1000);
+  exp.reportScheduledFor = reportDate.toISOString();
 
-    const eventNames = exp.suggestedEvents.map((e) => e.name);
-    const ga4Results = eventNames.length > 0 ? await getGA4EventCounts(eventNames, 10) : null;
-
-    // Build report text
-    let reportText = `📊 *Результаты эксперимента: #${exp.sequentialId} ${exp.cardName}*\n`;
-    reportText += `_Прошло 10 дней после релиза_\n\n`;
-
-    if (eventNames.length === 0) {
-      reportText += `Список аналитических событий не был задан — данных нет.`;
-    } else if (!ga4Results) {
-      reportText += `Событий запрошено: ${eventNames.length}\n`;
-      reportText += `⚠️ Не удалось получить данные из GA4 (нет доступа к API).\n`;
-      reportText += `Проверьте вручную в GA4 → Events:\n`;
-      reportText += eventNames.map((e) => `• \`${e}\``).join("\n");
-    } else {
-      for (const e of eventNames) {
-        const d = ga4Results[e];
-        if (!d || d.count === 0) {
-          reportText += `• \`${e}\` — ❌ нет данных\n`;
-        } else {
-          reportText += `• \`${e}\` — ${d.count.toLocaleString()} событий, ${d.users.toLocaleString()} юзеров\n`;
-        }
-      }
-    }
-
-    // Post to Slack
-    const slackMsg = `${reportText}\n_Отчёт по аналитике за 10 дней после релиза готов._`;
-    await postToSlack(slackMsg, exp.slackThreadTs);
-
-    // Add comment to Favro card
-    const favroComment =
-      `## 📊 Результаты эксперимента (10 дней)\n\n` +
-      (eventNames.length === 0
-        ? "Аналитические события не были заданы."
-        : eventNames
-            .map((e) => {
-              const d = ga4Results?.[e];
-              if (!d || d.count === 0) return `- \`${e}\`: ❌ нет данных`;
-              return `- \`${e}\`: ${d.count.toLocaleString()} событий, ${d.users.toLocaleString()} юзеров`;
-            })
-            .join("\n")) +
-      `\n\n_Отчёт сформирован автоматически ${now.toLocaleDateString("ru-RU")}_`;
-
-    await addFavroComment(cardCommonId, favroComment);
-
-    // Save updated state
-    saveStateLocal();
-    scheduleSaveToGitHub();
-  }
+  await postToSlack(
+    `🚀 *#${card.sequentialId} ${card.name}* — релиз!\n` +
+    `Через 10 дней (${reportDate.toLocaleDateString("ru-RU")}) подготовлю GA4-отчёт по результатам.`,
+    exp.slackThreadTs
+  );
 }
 
-// Run scheduler every hour
-setInterval(runScheduledReports, 60 * 60 * 1000);
-
 // ─── Slack Events API endpoint ───
-// Handles messages from users in the analytics channel (to capture event lists)
 app.post("/slack-events", async (req, res) => {
   const body = req.body;
+  if (body.type === "url_verification") return res.json({ challenge: body.challenge });
 
-  // Slack URL verification challenge
-  if (body.type === "url_verification") {
-    return res.json({ challenge: body.challenge });
-  }
-
-  // Message events
   if (body.type === "event_callback") {
     const event = body.event;
-
-    // Ignore bot messages
-    if (event.bot_id || event.subtype === "bot_message") {
-      return res.status(200).json({ ok: true });
-    }
-
-    // Only handle messages in our channel
-    if (event.channel !== SLACK_CHANNEL_ID) {
-      return res.status(200).json({ ok: true });
-    }
-
-    // Check if this is a reply in an experiment thread
+    if (event.bot_id || event.subtype === "bot_message") return res.status(200).json({ ok: true });
+    if (event.channel !== SLACK_CHANNEL_ID) return res.status(200).json({ ok: true });
     if (event.type === "message" && event.thread_ts) {
-      await handleSlackThreadReply(event);
+      handleSlackThreadReply(event).catch(console.error);
     }
   }
-
   res.status(200).json({ ok: true });
 });
 
 async function handleSlackThreadReply(event) {
-  const { text, thread_ts, user } = event;
+  const { text, thread_ts } = event;
   if (!text) return;
 
-  // Find experiment by thread_ts
   const exp = Object.values(experiments).find((e) => e.slackThreadTs === thread_ts);
   if (!exp) return;
 
-  console.log(`💬 Slack reply in experiment thread #${exp.sequentialId}: "${text.slice(0, 80)}"`);
+  console.log(`💬 Slack reply for #${exp.sequentialId}: "${text.slice(0, 60)}"`);
+  const lower = text.toLowerCase().trim();
 
-  const lowerText = text.toLowerCase().trim();
-
-  // "approve" — write current events list to Favro
-  if (lowerText === "approve" || lowerText === "ок" || lowerText === "ok") {
+  if (lower === "approve" || lower === "ок" || lower === "ok" || lower === "окей") {
     if (exp.suggestedEvents.length === 0) {
-      await postToSlack(`⚠️ Нет событий для записи. Сначала добавьте список событий.`, thread_ts);
+      await postToSlack(`⚠️ Нет событий для записи. Сначала добавьте список.`, thread_ts);
       return;
     }
-    const comment = formatEventsTable(exp.suggestedEvents);
-    await addFavroComment(exp.cardCommonId, comment);
+    await addFavroComment(exp.cardCommonId, formatEventsTable(exp.suggestedEvents));
     exp.eventsApproved = true;
     exp.favroCommentPosted = true;
     await postToSlack(
-      `✅ Записала ${exp.suggestedEvents.length} событий в Favro.\nБуду проверять GA4, когда задача уйдёт в Code Review.`,
+      `✅ Записала ${exp.suggestedEvents.length} событий в Favro.\n` +
+      `Буду проверять GA4 когда задача уйдёт в Code Review.`,
       thread_ts
     );
     saveStateLocal();
@@ -643,21 +400,19 @@ async function handleSlackThreadReply(event) {
     return;
   }
 
-  // Parse events from message
   const parsed = parseEventsFromText(text);
   if (parsed.length > 0) {
-    // Merge with existing (replace if same name)
-    for (const newEvent of parsed) {
-      const idx = exp.suggestedEvents.findIndex((e) => e.name === newEvent.name);
-      if (idx >= 0) {
-        exp.suggestedEvents[idx] = newEvent;
-      } else {
-        exp.suggestedEvents.push(newEvent);
-      }
+    for (const e of parsed) {
+      const idx = exp.suggestedEvents.findIndex((x) => x.name === e.name);
+      if (idx >= 0) exp.suggestedEvents[idx] = e;
+      else exp.suggestedEvents.push(e);
     }
-    const list = exp.suggestedEvents.map((e) => `• \`${e.name}\` — ${e.description || "без описания"}`).join("\n");
+    const list = exp.suggestedEvents
+      .map((e) => `• \`${e.name}\` — ${e.description || "без описания"}`)
+      .join("\n");
     await postToSlack(
-      `Добавила ${parsed.length} событий. Всего: ${exp.suggestedEvents.length}\n\n${list}\n\nЕсли список готов — напишите \`approve\``,
+      `Добавила ${parsed.length} событий. Всего: ${exp.suggestedEvents.length}\n\n${list}\n\n` +
+      `Когда готово → напишите \`approve\``,
       thread_ts
     );
     saveStateLocal();
@@ -665,23 +420,14 @@ async function handleSlackThreadReply(event) {
   }
 }
 
-// ─── Webhook endpoint ───
+// ─── Favro webhook ───
 app.post("/favro-webhook", async (req, res) => {
   const body = req.body;
   const now = new Date().toISOString();
 
-  console.log("=== FAVRO EVENT ===", now);
-
-  if (body.test) {
-    console.log("Test ping received");
-    return res.status(200).json({ ok: true, message: "pong" });
-  }
-
+  if (body.test) return res.status(200).json({ ok: true, message: "pong" });
   const card = body.card;
-  if (!card) {
-    console.log("No card data in payload");
-    return res.status(200).json({ ok: true, message: "no card data" });
-  }
+  if (!card) return res.status(200).json({ ok: true });
 
   const cardCommonId = card.cardCommonId;
   const currentColId = card.columnId;
@@ -701,71 +447,46 @@ app.post("/favro-webhook", async (req, res) => {
   };
 
   const prev = cardState[cardCommonId];
+  const hasExpTag = cardHasExperimentTag(card);
+  const isTrackedExperiment = !!experiments[cardCommonId];
 
-  // ─── Experiment tag detection ───
-  const hasExperimentTag = cardHasExperimentTag(card);
-  const wasTracked = !!experiments[cardCommonId];
-
-  if (hasExperimentTag && !wasTracked) {
-    // New experiment card — fire and forget (async)
+  // Detect new experiment tag
+  if (hasExpTag && !isTrackedExperiment) {
     handleExperimentTagAdded(card, now).catch(console.error);
   }
 
-  // ─── Column change tracking ───
+  // Column change logic
   if (prev && prev.columnId !== currentColId) {
     const fromName = prev.columnName;
     const toName = currentColName;
     const moveKey = `${fromName} -> ${toName}`;
 
     event.previousColumn = fromName;
-    event.moveDirection =
-      colOrder(currentColId) < colOrder(prev.columnId) ? "backward" : "forward";
+    event.moveDirection = colOrder(currentColId) < colOrder(prev.columnId) ? "backward" : "forward";
 
     if (SIGNIFICANT_RETURNS.has(moveKey)) {
-      const returnEvent = {
-        timestamp: now,
-        cardCommonId,
-        sequentialId: card.sequentialId,
-        cardName: card.name,
-        fromColumn: fromName,
-        toColumn: toName,
-        returnType: classifyReturn(fromName),
-        assignees,
-        timeOnColumns: card.timeOnColumns || {},
-      };
-      returns.push(returnEvent);
+      const ret = { timestamp: now, cardCommonId, sequentialId: card.sequentialId,
+        cardName: card.name, fromColumn: fromName, toColumn: toName,
+        returnType: classifyReturn(fromName), assignees, timeOnColumns: card.timeOnColumns || {} };
+      returns.push(ret);
       event.isReturn = true;
-      event.returnType = returnEvent.returnType;
-      console.log(
-        `⚠ RETURN: #${card.sequentialId} "${card.name}" | ${moveKey} | ${returnEvent.returnType}`
-      );
+      event.returnType = ret.returnType;
+      console.log(`⚠ RETURN: #${card.sequentialId} "${card.name}" | ${moveKey}`);
     } else {
-      console.log(`→ Move: #${card.sequentialId} "${card.name}" | ${moveKey} (${event.moveDirection})`);
+      console.log(`→ Move: #${card.sequentialId} "${card.name}" | ${moveKey}`);
     }
 
-    // ─── Experiment workflow triggers on column change ───
-    if (hasExperimentTag || wasTracked) {
-      if (toName === "Code Review") {
-        handleCodeReview(card, now).catch(console.error);
-      }
-      if (toName === "Released" || toName === "Done") {
-        handleReleased(card, now).catch(console.error);
-      }
+    // Experiment workflow
+    if (hasExpTag || isTrackedExperiment) {
+      if (toName === "Code Review") handleCodeReview(card, now).catch(console.error);
+      if (toName === "Released" || toName === "Done") handleReleased(card, now).catch(console.error);
     }
   } else if (!prev) {
-    console.log(`+ New card: #${card.sequentialId} "${card.name}" in ${currentColName}`);
-  } else {
-    console.log(`= Same col: #${card.sequentialId} "${card.name}" in ${currentColName}`);
+    console.log(`+ New: #${card.sequentialId} "${card.name}" in ${currentColName}`);
   }
 
-  cardState[cardCommonId] = {
-    columnId: currentColId,
-    columnName: currentColName,
-    lastSeen: now,
-    sequentialId: card.sequentialId,
-    name: card.name,
-    assignees,
-  };
+  cardState[cardCommonId] = { columnId: currentColId, columnName: currentColName,
+    lastSeen: now, sequentialId: card.sequentialId, name: card.name, assignees };
 
   allEvents.push(event);
   saveStateLocal();
@@ -774,13 +495,11 @@ app.post("/favro-webhook", async (req, res) => {
   res.status(200).json({ ok: true });
 });
 
-// ─── API endpoints ───
+// ─── API ───
+app.get("/", (req, res) => res.send("Favro webhook logger + Experiment bot"));
 
-app.get("/", (req, res) => res.send("Favro webhook logger + Experiment bot is running"));
-
-app.get("/api/returns", (req, res) => {
-  res.json({ total: returns.length, returns: returns.slice().reverse() });
-});
+app.get("/api/returns", (req, res) =>
+  res.json({ total: returns.length, returns: returns.slice().reverse() }));
 
 app.get("/api/returns/stats", (req, res) => {
   const byType = {}, byAssignee = {}, byCard = {};
@@ -790,16 +509,10 @@ app.get("/api/returns/stats", (req, res) => {
     const key = `#${r.sequentialId} ${r.cardName}`;
     byCard[key] = (byCard[key] || 0) + 1;
   }
-  const sortObj = (obj) =>
-    Object.fromEntries(Object.entries(obj).sort((a, b) => b[1] - a[1]));
-  res.json({
-    totalReturns: returns.length,
-    byType: sortObj(byType),
-    byAssignee: sortObj(byAssignee),
-    byCard: sortObj(byCard),
-    trackedCards: Object.keys(cardState).length,
-    totalEvents: allEvents.length,
-  });
+  const sort = (o) => Object.fromEntries(Object.entries(o).sort((a, b) => b[1] - a[1]));
+  res.json({ totalReturns: returns.length, byType: sort(byType),
+    byAssignee: sort(byAssignee), byCard: sort(byCard),
+    trackedCards: Object.keys(cardState).length, totalEvents: allEvents.length });
 });
 
 app.get("/api/events", (req, res) => {
@@ -807,57 +520,37 @@ app.get("/api/events", (req, res) => {
   res.json({ total: allEvents.length, events: allEvents.slice(-limit).reverse() });
 });
 
-app.get("/api/state", (req, res) => {
-  res.json({ trackedCards: Object.keys(cardState).length, cards: cardState });
-});
+app.get("/api/state", (req, res) =>
+  res.json({ trackedCards: Object.keys(cardState).length, cards: cardState }));
 
-app.get("/api/experiments", (req, res) => {
-  res.json({
-    total: Object.keys(experiments).length,
+app.get("/api/experiments", (req, res) =>
+  res.json({ total: Object.keys(experiments).length,
     experiments: Object.values(experiments).sort(
-      (a, b) => new Date(b.tagDetectedAt) - new Date(a.tagDetectedAt)
-    ),
-  });
-});
+      (a, b) => new Date(b.tagDetectedAt) - new Date(a.tagDetectedAt)) }));
 
-app.get("/health", (req, res) => {
-  res.json({
-    status: "ok",
-    githubPersistence: !!(GH_TOKEN && GH_REPO),
-    slackConfigured: !!(SLACK_BOT_TOKEN && SLACK_CHANNEL_ID),
-    favroConfigured: !!(FAVRO_EMAIL && FAVRO_API_TOKEN && FAVRO_ORG_ID),
-    ga4Configured: !!GA4_SERVICE_ACCOUNT_JSON,
+app.get("/health", (req, res) =>
+  res.json({ status: "ok",
+    github: !!(GH_TOKEN && GH_REPO),
+    slack: !!(SLACK_BOT_TOKEN && SLACK_CHANNEL_ID),
+    favro: !!(FAVRO_EMAIL && FAVRO_API_TOKEN && FAVRO_ORG_ID),
     uptime: process.uptime(),
     trackedCards: Object.keys(cardState).length,
     totalEvents: allEvents.length,
     totalReturns: returns.length,
-    activeExperiments: Object.values(experiments).filter((e) => !e.reportDone).length,
-  });
-});
+    activeExperiments: Object.values(experiments).filter((e) => !e.reportDone).length }));
 
 app.post("/api/save", async (req, res) => {
   await saveToGitHub();
-  res.json({ ok: true, message: "Saved to GitHub" });
-});
-
-// Manual trigger for scheduled reports (for testing)
-app.post("/api/run-reports", async (req, res) => {
-  await runScheduledReports();
   res.json({ ok: true });
 });
 
 // ─── Start ───
 async function start() {
   await loadStateFromGitHub();
-  // Run scheduler on startup (catches any overdue reports after restarts)
-  runScheduledReports().catch(console.error);
   const PORT = process.env.PORT || 10000;
   app.listen(PORT, () => {
-    console.log(`Favro webhook logger + Experiment bot listening on port ${PORT}`);
-    console.log(`GitHub: ${GH_TOKEN && GH_REPO ? "ENABLED" : "DISABLED"}`);
-    console.log(`Slack: ${SLACK_BOT_TOKEN && SLACK_CHANNEL_ID ? "ENABLED" : "DISABLED"}`);
-    console.log(`Favro API: ${FAVRO_EMAIL && FAVRO_API_TOKEN ? "ENABLED" : "DISABLED"}`);
-    console.log(`GA4: ${GA4_SERVICE_ACCOUNT_JSON ? "ENABLED" : "DISABLED"}`);
+    console.log(`Server listening on :${PORT}`);
+    console.log(`GitHub: ${GH_TOKEN && GH_REPO ? "ON" : "OFF"} | Slack: ${SLACK_BOT_TOKEN ? "ON" : "OFF"} | Favro: ${FAVRO_EMAIL ? "ON" : "OFF"}`);
   });
 }
 
