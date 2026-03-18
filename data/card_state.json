@@ -162,9 +162,9 @@
     ]
   },
   "e53574783df617f6abe30cf8": {
-    "columnId": "15563c2c50d3838a64e76261",
-    "columnName": "Ready For Dev",
-    "lastSeen": "2026-03-16T08:24:53.725Z",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-18T13:17:01.173Z",
     "sequentialId": 5863,
     "name": "[veilviwer] back to landing and search",
     "assignees": [
