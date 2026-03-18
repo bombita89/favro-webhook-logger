@@ -1921,5 +1921,22 @@
     "timeOnColumns": {
       "af8ed7601472c3e22faa634b": 431
     }
+  },
+  {
+    "timestamp": "2026-03-18T21:34:53.517Z",
+    "cardCommonId": "d6b0ff1ac34e665468502288",
+    "cardId": "1f8f7dcba5a624c26eb08699",
+    "sequentialId": 6062,
+    "name": "[tz light] безлимитное скачивание dm ",
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "assignees": [
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 339951311,
+      "ddfdfc6d1de72aea01fb80e4": 44932030,
+      "15563c2c50d3838a64e76261": 92241057
+    }
   }
 ]
