@@ -286,7 +286,7 @@ async function fetchFavroCard(cardCommonId) {
   if (!FAVRO_EMAIL || !FAVRO_API_TOKEN || !FAVRO_ORG_ID) return null;
   try {
     const res = await fetch(
-      `https://favro.com/api/1.0/cards?cardCommonId=${cardCommonId}`,
+      `https://favro.com/api/v1/cards?cardCommonId=${cardCommonId}`,
       { headers: favroHeaders() }
     );
     const data = await res.json();
@@ -302,7 +302,7 @@ async function fetchFavroComments(cardCommonId) {
   if (!FAVRO_EMAIL || !FAVRO_API_TOKEN || !FAVRO_ORG_ID) return [];
   try {
     const res = await fetch(
-      `https://favro.com/api/1.0/comments?cardCommonId=${cardCommonId}`,
+      `https://favro.com/api/v1/comments?cardCommonId=${cardCommonId}`,
       { headers: favroHeaders() }
     );
     const data = await res.json();
@@ -319,7 +319,7 @@ async function updateFavroCardDescription(cardId, newDescription) {
     return true;
   }
   try {
-    const res = await fetch(`https://favro.com/api/1.0/cards/${cardId}`, {
+    const res = await fetch(`https://favro.com/api/v1/cards/${cardId}`, {
       method: "PUT",
       headers: favroHeaders(),
       body: JSON.stringify({ description: newDescription }),
@@ -338,7 +338,7 @@ async function addFavroComment(cardCommonId, commentText) {
     return { ok: true };
   }
   try {
-    const res = await fetch("https://favro.com/api/1.0/comments", {
+    const res = await fetch("https://favro.com/api/v1/comments", {
       method: "POST",
       headers: favroHeaders(),
       body: JSON.stringify({ cardCommonId, comment: commentText }),
