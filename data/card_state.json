@@ -191,5 +191,15 @@
       "Anna Shcharbakova",
       "Sergey Ivontev"
     ]
+  },
+  "d124bb5d384e7231aad26a7e": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-18T12:43:24.859Z",
+    "sequentialId": 6066,
+    "name": "[veilviewer] правки после слияния веток",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ]
   }
 }
