@@ -151,13 +151,14 @@
     ]
   },
   "5c34b8daa998be0aafb418a1": {
-    "columnId": "3f6c5115c9ed29fb4c8e6490",
-    "columnName": "Code Review",
-    "lastSeen": "2026-03-14T09:09:51.890Z",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "lastSeen": "2026-03-18T08:39:02.002Z",
     "sequentialId": 6065,
     "name": "[veilviewer] перенести на http://lurkviewer.com",
     "assignees": [
-      "AbdulMalik Akhzamov"
+      "AbdulMalik Akhzamov",
+      "Aldar Dorzhiev"
     ]
   },
   "e53574783df617f6abe30cf8": {
