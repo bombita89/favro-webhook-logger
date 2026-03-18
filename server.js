@@ -470,7 +470,7 @@ async function handleExperimentTagAdded(card, now) {
 
   if (projectName && ga4PropertyId) {
     msg += `Проект: \`${projectName}\` → GA4 property \`${ga4PropertyId}\`\n`;
-    msg += `Анализирую существующие события... Предложу список скоро.`;
+    msg += `⏳ Анализ запрошен. Результат будет в треде в течение ~10 минут.`;
   } else if (projectName && !ga4PropertyId) {
     msg += `Проект: \`${projectName}\` — счётчик GA4 неизвестен.\n`;
     msg += `📊 Напишите ID счётчика GA4 (формат: *123456789*)`;
