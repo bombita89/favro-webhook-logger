@@ -217,5 +217,13 @@
     "sequentialId": 6130,
     "name": "тест для аналитики",
     "assignees": []
+  },
+  "test-exp-001": {
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "lastSeen": "2026-03-18T17:51:10.321Z",
+    "sequentialId": 1234,
+    "name": "Тестовый эксперимент",
+    "assignees": []
   }
 }
