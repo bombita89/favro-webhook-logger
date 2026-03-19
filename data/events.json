@@ -1972,5 +1972,20 @@
       "9ee2b845e4e8262a6ef80c56": 85624334,
       "15563c2c50d3838a64e76261": 172
     }
+  },
+  {
+    "timestamp": "2026-03-19T11:15:25.646Z",
+    "cardCommonId": "c540f1fb3be5f231c80dd557",
+    "cardId": "94de9c803ee79f91c944c622",
+    "sequentialId": 6129,
+    "name": "[lurkviewer] баги версия 3",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [],
+    "timeOnColumns": {
+      "e70873a4ee5289566911d143": 8423785,
+      "9ee2b845e4e8262a6ef80c56": 4850406,
+      "15563c2c50d3838a64e76261": 59336797
+    }
   }
 ]
