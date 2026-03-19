@@ -267,5 +267,16 @@
     "sequentialId": 5847,
     "name": "Проверить и поправить отправку событий для бота",
     "assignees": []
+  },
+  "1b8da185c0e4ebf991da5320": {
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "lastSeen": "2026-03-19T10:28:55.408Z",
+    "sequentialId": 6076,
+    "name": "[ttdownloader.video] rebuild",
+    "assignees": [
+      "Aldar Dorzhiev",
+      "Valeriy Puzakov"
+    ]
   }
 }
