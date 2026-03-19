@@ -259,5 +259,13 @@
     "assignees": [
       "Sergey Ivontev"
     ]
+  },
+  "3c0143b3a8027312bddc5819": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-19T09:46:02.129Z",
+    "sequentialId": 5847,
+    "name": "Проверить и поправить отправку событий для бота",
+    "assignees": []
   }
 }
