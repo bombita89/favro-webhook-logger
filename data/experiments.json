@@ -123,5 +123,29 @@
     "releasedAt": null,
     "reportScheduledFor": null,
     "reportDone": false
+  },
+  "518195e69294922d281f5274": {
+    "cardCommonId": "518195e69294922d281f5274",
+    "cardId": "0585b3d0ef6600f44bfaf294",
+    "cardName": "[savefrom.net] Баг окончания подписки: Создать крон джобы отправки письма",
+    "sequentialId": 5055,
+    "tagDetectedAt": "2026-03-19T18:56:29.219Z",
+    "projectName": "savefrom.net",
+    "cardDescription": "",
+    "testUrls": [],
+    "slackThreadTs": "1773946589.575289",
+    "awaitingProperty": true,
+    "needsAnalysis": false,
+    "analysisPosted": false,
+    "suggestedEvents": [],
+    "eventsApproved": false,
+    "favroCommentPosted": false,
+    "codeReviewAt": null,
+    "qaAt": null,
+    "testCheckNeeded": false,
+    "testCheckDone": false,
+    "releasedAt": null,
+    "reportScheduledFor": null,
+    "reportDone": false
   }
 }
