@@ -1987,5 +1987,25 @@
       "9ee2b845e4e8262a6ef80c56": 4850406,
       "15563c2c50d3838a64e76261": 59336797
     }
+  },
+  {
+    "timestamp": "2026-03-19T14:45:40.174Z",
+    "cardCommonId": "5c34b8daa998be0aafb418a1",
+    "cardId": "bb1a1a4b70d5886c8badde72",
+    "sequentialId": 6065,
+    "name": "[veilviewer] перенести на http://lurkviewer.com",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "AbdulMalik Akhzamov",
+      "Aldar Dorzhiev"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 170902896,
+      "ddfdfc6d1de72aea01fb80e4": 154189893,
+      "e70873a4ee5289566911d143": 97385316,
+      "9ee2b845e4e8262a6ef80c56": 101836340,
+      "15563c2c50d3838a64e76261": 88060489
+    }
   }
 ]
