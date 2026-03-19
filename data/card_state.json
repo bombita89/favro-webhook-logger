@@ -286,5 +286,16 @@
     "sequentialId": 6129,
     "name": "[lurkviewer] баги версия 3",
     "assignees": []
+  },
+  "518195e69294922d281f5274": {
+    "columnId": "9f67ac81338248202d3fa2da",
+    "columnName": "Done",
+    "lastSeen": "2026-03-19T18:56:29.219Z",
+    "sequentialId": 5055,
+    "name": "[savefrom.net] Баг окончания подписки: Создать крон джобы отправки письма",
+    "assignees": [
+      "Mike Samokhvalov",
+      "Mashxurbek Muhammadjonov"
+    ]
   }
 }
