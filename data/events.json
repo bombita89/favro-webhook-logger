@@ -2007,5 +2007,30 @@
       "9ee2b845e4e8262a6ef80c56": 101836340,
       "15563c2c50d3838a64e76261": 88060489
     }
+  },
+  {
+    "timestamp": "2026-03-19T18:56:29.219Z",
+    "cardCommonId": "518195e69294922d281f5274",
+    "cardId": "0585b3d0ef6600f44bfaf294",
+    "sequentialId": 5055,
+    "name": "[savefrom.net] Баг окончания подписки: Создать крон джобы отправки письма",
+    "columnId": "9f67ac81338248202d3fa2da",
+    "columnName": "Done",
+    "assignees": [
+      "Mike Samokhvalov",
+      "Mashxurbek Muhammadjonov"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 152650,
+      "ddfdfc6d1de72aea01fb80e4": 431598712,
+      "9f67ac81338248202d3fa2da": 7898411301,
+      "450eca361acacbda92cde88e": 84391207,
+      "e70873a4ee5289566911d143": 68321,
+      "9ee2b845e4e8262a6ef80c56": 449693025,
+      "15563c2c50d3838a64e76261": 181318094,
+      "fa1aeb43eb0e9637b68514b0": 265059514,
+      "6703c8fa583bbc9c1f98caa8": 258129614,
+      "4405671fd8390707bc5b4bd2": 409362546
+    }
   }
 ]
