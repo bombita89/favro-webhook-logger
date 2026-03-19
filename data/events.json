@@ -1938,5 +1938,20 @@
       "ddfdfc6d1de72aea01fb80e4": 44932030,
       "15563c2c50d3838a64e76261": 92241057
     }
+  },
+  {
+    "timestamp": "2026-03-19T09:46:02.129Z",
+    "cardCommonId": "3c0143b3a8027312bddc5819",
+    "cardId": "28cffdc3a6b01ea902144ec4",
+    "sequentialId": 5847,
+    "name": "Проверить и поправить отправку событий для бота",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 1806414869,
+      "3f6c5115c9ed29fb4c8e6490": 68,
+      "15563c2c50d3838a64e76261": 93538339
+    }
   }
 ]
