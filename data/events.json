@@ -1953,5 +1953,24 @@
       "3f6c5115c9ed29fb4c8e6490": 68,
       "15563c2c50d3838a64e76261": 93538339
     }
+  },
+  {
+    "timestamp": "2026-03-19T10:28:55.408Z",
+    "cardCommonId": "1b8da185c0e4ebf991da5320",
+    "cardId": "667b1da64494709c9a9dac38",
+    "sequentialId": 6076,
+    "name": "[ttdownloader.video] rebuild",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "Aldar Dorzhiev",
+      "Valeriy Puzakov"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 5523,
+      "e70873a4ee5289566911d143": 86133833,
+      "9ee2b845e4e8262a6ef80c56": 85624334,
+      "15563c2c50d3838a64e76261": 172
+    }
   }
 ]
