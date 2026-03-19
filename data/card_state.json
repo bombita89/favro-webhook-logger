@@ -278,5 +278,13 @@
       "Aldar Dorzhiev",
       "Valeriy Puzakov"
     ]
+  },
+  "c540f1fb3be5f231c80dd557": {
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "lastSeen": "2026-03-19T11:15:25.646Z",
+    "sequentialId": 6129,
+    "name": "[lurkviewer] баги версия 3",
+    "assignees": []
   }
 }
