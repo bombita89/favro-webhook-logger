@@ -2032,5 +2032,30 @@
       "6703c8fa583bbc9c1f98caa8": 258129614,
       "4405671fd8390707bc5b4bd2": 409362546
     }
+  },
+  {
+    "timestamp": "2026-03-20T12:49:47.101Z",
+    "cardCommonId": "4da16f90d930eb9679fea7ea",
+    "cardId": "18963e53a28fa78de644c02d",
+    "sequentialId": 5859,
+    "name": "[tz+sf] воронка dm ",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "Anna Shcharbakova"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 3202,
+      "3f6c5115c9ed29fb4c8e6490": 288124794,
+      "ddfdfc6d1de72aea01fb80e4": 67802687,
+      "e70873a4ee5289566911d143": 18147199,
+      "9ee2b845e4e8262a6ef80c56": 244789732,
+      "15563c2c50d3838a64e76261": 101,
+      "4405671fd8390707bc5b4bd2": 2230
+    },
+    "previousColumn": "Code Review",
+    "moveDirection": "backward",
+    "isReturn": true,
+    "returnType": "code_review_rejection"
   }
 ]
