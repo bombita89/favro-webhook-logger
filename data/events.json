@@ -2073,5 +2073,25 @@
       "ddfdfc6d1de72aea01fb80e4": 80850742,
       "15563c2c50d3838a64e76261": 442313942
     }
+  },
+  {
+    "timestamp": "2026-03-24T10:22:10.732Z",
+    "cardCommonId": "d6b0ff1ac34e665468502288",
+    "cardId": "1f8f7dcba5a624c26eb08699",
+    "sequentialId": 6062,
+    "name": "[tz light] безлимитное скачивание dm ",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 339951311,
+      "3f6c5115c9ed29fb4c8e6490": 71,
+      "ddfdfc6d1de72aea01fb80e4": 436143463,
+      "15563c2c50d3838a64e76261": 179066770
+    },
+    "previousColumn": "Doing",
+    "moveDirection": "forward"
   }
 ]
