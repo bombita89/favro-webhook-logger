@@ -297,5 +297,13 @@
       "Mike Samokhvalov",
       "Mashxurbek Muhammadjonov"
     ]
+  },
+  "8481863a2f4212541d2ed670": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-24T09:08:05.506Z",
+    "sequentialId": 4733,
+    "name": "[ig sites] MSC Баги регресса 07.10.2025",
+    "assignees": []
   }
 }
