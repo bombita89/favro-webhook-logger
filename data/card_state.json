@@ -172,13 +172,14 @@
     ]
   },
   "4da16f90d930eb9679fea7ea": {
-    "columnId": "15563c2c50d3838a64e76261",
-    "columnName": "Ready For Dev",
-    "lastSeen": "2026-03-20T12:49:47.101Z",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-25T10:56:47.709Z",
     "sequentialId": 5859,
     "name": "[tz+sf] воронка dm ",
     "assignees": [
-      "Anna Shcharbakova"
+      "Anna Shcharbakova",
+      "Sergey Ivontev"
     ]
   },
   "39bb8ffc54103d2a87a321e9": {
