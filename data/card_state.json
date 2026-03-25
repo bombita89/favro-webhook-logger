@@ -306,5 +306,15 @@
     "sequentialId": 4733,
     "name": "[ig sites] MSC Баги регресса 07.10.2025",
     "assignees": []
+  },
+  "5b0f2cb11e73e6c9e44bbf31": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-25T12:01:31.288Z",
+    "sequentialId": 5751,
+    "name": "Cнятие токсичных партнерских ссылок",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ]
   }
 }
