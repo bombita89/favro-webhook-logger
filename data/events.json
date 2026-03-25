@@ -2118,5 +2118,23 @@
     },
     "previousColumn": "Ready For Dev",
     "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-03-25T12:01:31.288Z",
+    "cardCommonId": "5b0f2cb11e73e6c9e44bbf31",
+    "cardId": "25a2af18066f2defbe29a9bf",
+    "sequentialId": 5751,
+    "name": "Cнятие токсичных партнерских ссылок",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 431198034,
+      "3f6c5115c9ed29fb4c8e6490": 568,
+      "ddfdfc6d1de72aea01fb80e4": 93452824,
+      "15563c2c50d3838a64e76261": 1822751842
+    }
   }
 ]
