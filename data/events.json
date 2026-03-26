@@ -2163,5 +2163,30 @@
     "moveDirection": "backward",
     "isReturn": true,
     "returnType": "code_review_rejection"
+  },
+  {
+    "timestamp": "2026-03-26T11:31:43.295Z",
+    "cardCommonId": "d6b0ff1ac34e665468502288",
+    "cardId": "1f8f7dcba5a624c26eb08699",
+    "sequentialId": 6062,
+    "name": "[tz light] безлимитное скачивание dm ",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 339951311,
+      "3f6c5115c9ed29fb4c8e6490": 84711407,
+      "ddfdfc6d1de72aea01fb80e4": 436143463,
+      "e70873a4ee5289566911d143": 1369130,
+      "9ee2b845e4e8262a6ef80c56": 12946152,
+      "15563c2c50d3838a64e76261": 179066869,
+      "4405671fd8390707bc5b4bd2": 77945843
+    },
+    "previousColumn": "Code Review",
+    "moveDirection": "backward",
+    "isReturn": true,
+    "returnType": "code_review_rejection"
   }
 ]
