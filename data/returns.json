@@ -515,5 +515,28 @@
       "15563c2c50d3838a64e76261": 101,
       "4405671fd8390707bc5b4bd2": 2230
     }
+  },
+  {
+    "timestamp": "2026-03-26T11:07:41.181Z",
+    "cardCommonId": "4da16f90d930eb9679fea7ea",
+    "sequentialId": 5859,
+    "cardName": "[tz+sf] воронка dm ",
+    "fromColumn": "Code Review",
+    "toColumn": "Ready For Dev",
+    "returnType": "code_review_rejection",
+    "assignees": [
+      "Anna Shcharbakova",
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 3202,
+      "3f6c5115c9ed29fb4c8e6490": 290151857,
+      "ddfdfc6d1de72aea01fb80e4": 166356311,
+      "450eca361acacbda92cde88e": 86428192,
+      "e70873a4ee5289566911d143": 20733790,
+      "9ee2b845e4e8262a6ef80c56": 327229523,
+      "15563c2c50d3838a64e76261": 240238968,
+      "4405671fd8390707bc5b4bd2": 2230
+    }
   }
 ]
