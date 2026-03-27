@@ -147,5 +147,30 @@
     "releasedAt": null,
     "reportScheduledFor": null,
     "reportDone": false
+  },
+  "fc8d636d9cf41200bc42b53c": {
+    "cardCommonId": "fc8d636d9cf41200bc42b53c",
+    "cardId": "06ed32f8d8a1f4257fb1de74",
+    "cardName": "sf баг тз эксперимента",
+    "sequentialId": 6203,
+    "tagDetectedAt": "2026-03-27T09:41:02.191Z",
+    "projectName": null,
+    "ga4PropertyId": null,
+    "cardDescription": "",
+    "testUrls": [],
+    "slackThreadTs": "1774604462.528259",
+    "awaitingProperty": true,
+    "needsAnalysis": false,
+    "analysisPosted": false,
+    "suggestedEvents": [],
+    "eventsApproved": false,
+    "favroCommentPosted": false,
+    "codeReviewAt": null,
+    "qaAt": null,
+    "testCheckNeeded": false,
+    "testCheckDone": false,
+    "releasedAt": null,
+    "reportScheduledFor": null,
+    "reportDone": false
   }
 }
