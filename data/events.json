@@ -2188,5 +2188,18 @@
     "moveDirection": "backward",
     "isReturn": true,
     "returnType": "code_review_rejection"
+  },
+  {
+    "timestamp": "2026-03-27T09:41:02.191Z",
+    "cardCommonId": "fc8d636d9cf41200bc42b53c",
+    "cardId": "06ed32f8d8a1f4257fb1de74",
+    "sequentialId": 6203,
+    "name": "sf баг тз эксперимента",
+    "columnId": "af8ed7601472c3e22faa634b",
+    "columnName": "Backlog",
+    "assignees": [],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 3101059
+    }
   }
 ]
