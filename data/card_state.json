@@ -316,5 +316,13 @@
     "assignees": [
       "Konstantin Zaytsev"
     ]
+  },
+  "fc8d636d9cf41200bc42b53c": {
+    "columnId": "af8ed7601472c3e22faa634b",
+    "columnName": "Backlog",
+    "lastSeen": "2026-03-27T09:41:02.191Z",
+    "sequentialId": 6203,
+    "name": "sf баг тз эксперимента",
+    "assignees": []
   }
 }
