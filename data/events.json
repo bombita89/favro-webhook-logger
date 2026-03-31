@@ -2201,5 +2201,23 @@
     "timeOnColumns": {
       "af8ed7601472c3e22faa634b": 3101059
     }
+  },
+  {
+    "timestamp": "2026-03-31T01:08:45.312Z",
+    "cardCommonId": "1e708e76fa0abb110dfbc50c",
+    "cardId": "bedb4a7ff9f31704fa9b9a3a",
+    "sequentialId": 6195,
+    "name": "[y2mate] Развернуть клон y2mate на домене y2mate.fyi",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "AbdulMalik Akhzamov"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 97884,
+      "3f6c5115c9ed29fb4c8e6490": 75,
+      "ddfdfc6d1de72aea01fb80e4": 408701899,
+      "15563c2c50d3838a64e76261": 79996219
+    }
   }
 ]
