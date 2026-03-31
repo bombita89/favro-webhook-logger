@@ -324,5 +324,15 @@
     "sequentialId": 6203,
     "name": "sf баг тз эксперимента",
     "assignees": []
+  },
+  "1e708e76fa0abb110dfbc50c": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-31T01:08:45.312Z",
+    "sequentialId": 6195,
+    "name": "[y2mate] Развернуть клон y2mate на домене y2mate.fyi",
+    "assignees": [
+      "AbdulMalik Akhzamov"
+    ]
   }
 }
