@@ -334,5 +334,15 @@
     "assignees": [
       "AbdulMalik Akhzamov"
     ]
+  },
+  "141345ed3d65febacd4f9cd7": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-03-31T09:57:05.334Z",
+    "sequentialId": 6193,
+    "name": "[ytmp3.sc] Развернуть клон ytmp3.sc → ytmp3.llc",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ]
   }
 }
