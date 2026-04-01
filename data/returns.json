@@ -597,5 +597,25 @@
       "9ee2b845e4e8262a6ef80c56": 1913363,
       "15563c2c50d3838a64e76261": 79996287
     }
+  },
+  {
+    "timestamp": "2026-04-01T14:15:03.791Z",
+    "cardCommonId": "141345ed3d65febacd4f9cd7",
+    "sequentialId": 6193,
+    "cardName": "[ytmp3.sc] Развернуть клон ytmp3.sc → ytmp3.llc",
+    "fromColumn": "Code Review",
+    "toColumn": "Ready For Dev",
+    "returnType": "code_review_rejection",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 178181,
+      "3f6c5115c9ed29fb4c8e6490": 84456746,
+      "ddfdfc6d1de72aea01fb80e4": 440426146,
+      "e70873a4ee5289566911d143": 14982334,
+      "9ee2b845e4e8262a6ef80c56": 2420602,
+      "15563c2c50d3838a64e76261": 80571134
+    }
   }
 ]
