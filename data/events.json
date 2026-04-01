@@ -2297,5 +2297,29 @@
     },
     "previousColumn": "Doing",
     "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-04-01T09:15:46.746Z",
+    "cardCommonId": "1e708e76fa0abb110dfbc50c",
+    "cardId": "bedb4a7ff9f31704fa9b9a3a",
+    "sequentialId": 6195,
+    "name": "[y2mate] Развернуть клон y2mate на домене y2mate.fyi",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "AbdulMalik Akhzamov"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 97884,
+      "3f6c5115c9ed29fb4c8e6490": 110264460,
+      "ddfdfc6d1de72aea01fb80e4": 408701899,
+      "e70873a4ee5289566911d143": 3444121,
+      "9ee2b845e4e8262a6ef80c56": 1913363,
+      "15563c2c50d3838a64e76261": 79996287
+    },
+    "previousColumn": "Code Review",
+    "moveDirection": "backward",
+    "isReturn": true,
+    "returnType": "code_review_rejection"
   }
 ]
