@@ -2255,5 +2255,27 @@
       "ddfdfc6d1de72aea01fb80e4": 579082917,
       "15563c2c50d3838a64e76261": 18798322
     }
+  },
+  {
+    "timestamp": "2026-04-01T07:33:14.860Z",
+    "cardCommonId": "141345ed3d65febacd4f9cd7",
+    "cardId": "588923610e5cd588162c5929",
+    "sequentialId": 6193,
+    "name": "[ytmp3.sc] Развернуть клон ytmp3.sc → ytmp3.llc",
+    "columnId": "ddfdfc6d1de72aea01fb80e4",
+    "columnName": "Doing",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 178181,
+      "3f6c5115c9ed29fb4c8e6490": 77769565,
+      "ddfdfc6d1de72aea01fb80e4": 440407467,
+      "15563c2c50d3838a64e76261": 80571050
+    },
+    "previousColumn": "Code Review",
+    "moveDirection": "backward",
+    "isReturn": true,
+    "returnType": "code_review_rejection"
   }
 ]
