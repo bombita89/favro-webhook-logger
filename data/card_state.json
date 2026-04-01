@@ -336,9 +336,9 @@
     ]
   },
   "141345ed3d65febacd4f9cd7": {
-    "columnId": "3f6c5115c9ed29fb4c8e6490",
-    "columnName": "Code Review",
-    "lastSeen": "2026-04-01T07:33:33.588Z",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "lastSeen": "2026-04-01T14:15:03.791Z",
     "sequentialId": 6193,
     "name": "[ytmp3.sc] Развернуть клон ytmp3.sc → ytmp3.llc",
     "assignees": [
