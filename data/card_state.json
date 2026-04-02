@@ -346,9 +346,9 @@
     ]
   },
   "37b40280c244f20bcca6ca33": {
-    "columnId": "3f6c5115c9ed29fb4c8e6490",
-    "columnName": "Code Review",
-    "lastSeen": "2026-04-01T07:21:26.150Z",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "lastSeen": "2026-04-02T08:38:13.471Z",
     "sequentialId": 6194,
     "name": "[savemp3] Развернуть клон savemp3 на домене savemp3.io",
     "assignees": [
