@@ -318,12 +318,14 @@
     ]
   },
   "fc8d636d9cf41200bc42b53c": {
-    "columnId": "af8ed7601472c3e22faa634b",
-    "columnName": "Backlog",
-    "lastSeen": "2026-03-27T09:41:02.191Z",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-02T11:33:26.891Z",
     "sequentialId": 6203,
     "name": "sf баг тз эксперимента",
-    "assignees": []
+    "assignees": [
+      "Sergey Ivontev"
+    ]
   },
   "1e708e76fa0abb110dfbc50c": {
     "columnId": "15563c2c50d3838a64e76261",
