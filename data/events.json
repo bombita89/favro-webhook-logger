@@ -2407,5 +2407,22 @@
     },
     "previousColumn": "Backlog",
     "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-04-02T12:23:25.726Z",
+    "cardCommonId": "aea6b48dc876b37974933c55",
+    "cardId": "6ea0e44a8f24721671b2a49b",
+    "sequentialId": 6186,
+    "name": "[fastdl] Заменить WebView Instagram на WebView FastDL в APK",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 77,
+      "ddfdfc6d1de72aea01fb80e4": 2614918,
+      "15563c2c50d3838a64e76261": 774045232
+    }
   }
 ]
