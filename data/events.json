@@ -2387,5 +2387,25 @@
     "moveDirection": "backward",
     "isReturn": true,
     "returnType": "code_review_rejection"
+  },
+  {
+    "timestamp": "2026-04-02T11:33:26.891Z",
+    "cardCommonId": "fc8d636d9cf41200bc42b53c",
+    "cardId": "06ed32f8d8a1f4257fb1de74",
+    "sequentialId": 6203,
+    "name": "sf баг тз эксперимента",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 443870272,
+      "3f6c5115c9ed29fb4c8e6490": 77,
+      "ddfdfc6d1de72aea01fb80e4": 14396925,
+      "15563c2c50d3838a64e76261": 69978537
+    },
+    "previousColumn": "Backlog",
+    "moveDirection": "forward"
   }
 ]
