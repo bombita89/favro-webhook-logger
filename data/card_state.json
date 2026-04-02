@@ -354,5 +354,15 @@
     "assignees": [
       "Sergey Ivontev"
     ]
+  },
+  "760fa123b1b7a09db5d865bb": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-02T08:28:15.104Z",
+    "sequentialId": 6200,
+    "name": "[anonyig] добавить ивенты",
+    "assignees": [
+      "Sergey Ivontev"
+    ]
   }
 }
