@@ -2345,5 +2345,23 @@
     "moveDirection": "backward",
     "isReturn": true,
     "returnType": "code_review_rejection"
+  },
+  {
+    "timestamp": "2026-04-02T08:28:15.104Z",
+    "cardCommonId": "760fa123b1b7a09db5d865bb",
+    "cardId": "b17a56c3308192b509a08dd5",
+    "sequentialId": 6200,
+    "name": "[anonyig] добавить ивенты",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 416347,
+      "3f6c5115c9ed29fb4c8e6490": 72,
+      "ddfdfc6d1de72aea01fb80e4": 88708256,
+      "15563c2c50d3838a64e76261": 517659564
+    }
   }
 ]
