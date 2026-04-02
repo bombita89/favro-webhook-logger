@@ -2363,5 +2363,29 @@
       "ddfdfc6d1de72aea01fb80e4": 88708256,
       "15563c2c50d3838a64e76261": 517659564
     }
+  },
+  {
+    "timestamp": "2026-04-02T08:38:13.471Z",
+    "cardCommonId": "37b40280c244f20bcca6ca33",
+    "cardId": "8e43f7e42be5c67241c4b091",
+    "sequentialId": 6194,
+    "name": "[savemp3] Развернуть клон savemp3 на домене savemp3.io",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 2356,
+      "3f6c5115c9ed29fb4c8e6490": 11875793,
+      "ddfdfc6d1de72aea01fb80e4": 579082917,
+      "e70873a4ee5289566911d143": 6189791,
+      "9ee2b845e4e8262a6ef80c56": 72941747,
+      "15563c2c50d3838a64e76261": 18798412
+    },
+    "previousColumn": "Code Review",
+    "moveDirection": "backward",
+    "isReturn": true,
+    "returnType": "code_review_rejection"
   }
 ]
