@@ -394,5 +394,15 @@
     "sequentialId": 6228,
     "name": "rebuild astrostar",
     "assignees": []
+  },
+  "e61d5d8f11d00415e243eb9f": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-03T15:37:22.145Z",
+    "sequentialId": 5945,
+    "name": "Проставить ссылки с наших больших проектов на instasupersave и storiesig",
+    "assignees": [
+      "Sergey Ivontev"
+    ]
   }
 }
