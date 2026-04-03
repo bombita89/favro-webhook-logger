@@ -376,5 +376,15 @@
     "assignees": [
       "Sergey Ivontev"
     ]
+  },
+  "0a779ea6d5c65fbf204211b1": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-03T08:46:18.649Z",
+    "sequentialId": 5954,
+    "name": "[veilviewer] Реализовать окно  мобильной версии страницы сейф профайл как на макете.",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ]
   }
 }
