@@ -2424,5 +2424,24 @@
       "ddfdfc6d1de72aea01fb80e4": 2614918,
       "15563c2c50d3838a64e76261": 774045232
     }
+  },
+  {
+    "timestamp": "2026-04-03T08:46:18.649Z",
+    "cardCommonId": "0a779ea6d5c65fbf204211b1",
+    "cardId": "dcb10952addbba42c47d85b4",
+    "sequentialId": 5954,
+    "name": "[veilviewer] Реализовать окно  мобильной версии страницы сейф профайл как на макете.",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 2239655360,
+      "3f6c5115c9ed29fb4c8e6490": 105,
+      "ddfdfc6d1de72aea01fb80e4": 153642528,
+      "e70873a4ee5289566911d143": 365037,
+      "15563c2c50d3838a64e76261": 10508027
+    }
   }
 ]
