@@ -386,5 +386,13 @@
     "assignees": [
       "Konstantin Zaytsev"
     ]
+  },
+  "1911ca1e2ebcd7ec81c2c983": {
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "lastSeen": "2026-04-03T10:50:29.966Z",
+    "sequentialId": 6228,
+    "name": "rebuild astrostar",
+    "assignees": []
   }
 }
