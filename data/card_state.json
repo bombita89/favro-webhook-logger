@@ -406,9 +406,9 @@
     ]
   },
   "4df813f0f3b0ca9b3484dc8e": {
-    "columnId": "15563c2c50d3838a64e76261",
-    "columnName": "Ready For Dev",
-    "lastSeen": "2026-04-06T09:28:30.311Z",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-06T09:28:57.094Z",
     "sequentialId": 6208,
     "name": "[99odds.com] Backend: новые API-Sports proxy эндпоинты для страниц матчей",
     "assignees": [
