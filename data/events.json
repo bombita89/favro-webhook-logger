@@ -2584,5 +2584,27 @@
     },
     "previousColumn": "Ready For Dev",
     "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-04-06T09:29:12.427Z",
+    "cardCommonId": "e61d5d8f11d00415e243eb9f",
+    "cardId": "a2a508b4a7c3c3eab5a28ad8",
+    "sequentialId": 5945,
+    "name": "Проставить ссылки с наших больших проектов на instasupersave и storiesig",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 2316587649,
+      "3f6c5115c9ed29fb4c8e6490": 237110316,
+      "ddfdfc6d1de72aea01fb80e4": 97928553,
+      "15563c2c50d3838a64e76261": 93064159
+    },
+    "previousColumn": "Code Review",
+    "moveDirection": "backward",
+    "isReturn": true,
+    "returnType": "code_review_rejection"
   }
 ]
