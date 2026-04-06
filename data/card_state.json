@@ -404,5 +404,16 @@
     "assignees": [
       "Sergey Ivontev"
     ]
+  },
+  "4df813f0f3b0ca9b3484dc8e": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-06T07:02:05.591Z",
+    "sequentialId": 6208,
+    "name": "[99odds.com] Backend: новые API-Sports proxy эндпоинты для страниц матчей",
+    "assignees": [
+      "Selim Ataballyev",
+      "AbdulMalik Akhzamov"
+    ]
   }
 }
