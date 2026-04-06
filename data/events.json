@@ -2521,5 +2521,24 @@
       "ddfdfc6d1de72aea01fb80e4": 97928553,
       "15563c2c50d3838a64e76261": 93064086
     }
+  },
+  {
+    "timestamp": "2026-04-06T07:02:05.591Z",
+    "cardCommonId": "4df813f0f3b0ca9b3484dc8e",
+    "cardId": "b3f115f7e7d5f624cdcb1caa",
+    "sequentialId": 6208,
+    "name": "[99odds.com] Backend: новые API-Sports proxy эндпоинты для страниц матчей",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Selim Ataballyev",
+      "AbdulMalik Akhzamov"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 70284767,
+      "3f6c5115c9ed29fb4c8e6490": 68,
+      "ddfdfc6d1de72aea01fb80e4": 86430989,
+      "15563c2c50d3838a64e76261": 430398153
+    }
   }
 ]
