@@ -415,5 +415,16 @@
       "Selim Ataballyev",
       "AbdulMalik Akhzamov"
     ]
+  },
+  "957cd69616777a1d9dead7ac": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-07T12:01:28.173Z",
+    "sequentialId": 6128,
+    "name": "[internal projects]: баг ссылки на экстеншен в yandex browser + меняем ссылки на экстеншен на страницу флоу ОМ",
+    "assignees": [
+      "Selim Ataballyev",
+      "Sergey Ivontev"
+    ]
   }
 }
