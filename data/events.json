@@ -2650,5 +2650,27 @@
     },
     "previousColumn": "Ready For Dev",
     "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-04-07T12:01:28.173Z",
+    "cardCommonId": "957cd69616777a1d9dead7ac",
+    "cardId": "9681ed8e51a866a55fb6435a",
+    "sequentialId": 6128,
+    "name": "[internal projects]: баг ссылки на экстеншен в yandex browser + меняем ссылки на экстеншен на страницу флоу ОМ",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Selim Ataballyev",
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 1121261444,
+      "3f6c5115c9ed29fb4c8e6490": 101,
+      "ddfdfc6d1de72aea01fb80e4": 14374404,
+      "450eca361acacbda92cde88e": 67682,
+      "e70873a4ee5289566911d143": 367300,
+      "9ee2b845e4e8262a6ef80c56": 70620449,
+      "15563c2c50d3838a64e76261": 510986053
+    }
   }
 ]
