@@ -2672,5 +2672,24 @@
       "9ee2b845e4e8262a6ef80c56": 70620449,
       "15563c2c50d3838a64e76261": 510986053
     }
+  },
+  {
+    "timestamp": "2026-04-09T07:53:56.331Z",
+    "cardCommonId": "b4dfd7f76038a795dc5dce7d",
+    "cardId": "42e8e5f394a8986375cd0302",
+    "sequentialId": 6238,
+    "name": "[fastdl] сделать клон для apk",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "Victoria Lomonosova",
+      "Ismat Valiyev"
+    ],
+    "timeOnColumns": {
+      "ddfdfc6d1de72aea01fb80e4": 190759990,
+      "e70873a4ee5289566911d143": 6156119,
+      "9ee2b845e4e8262a6ef80c56": 64690158,
+      "15563c2c50d3838a64e76261": 247245441
+    }
   }
 ]
