@@ -2691,5 +2691,22 @@
       "9ee2b845e4e8262a6ef80c56": 64690158,
       "15563c2c50d3838a64e76261": 247245441
     }
+  },
+  {
+    "timestamp": "2026-04-10T11:53:20.753Z",
+    "cardCommonId": "9f7a77b6c6a9f3989e33689a",
+    "cardId": "b187d0473145d70f888f0614",
+    "sequentialId": 6303,
+    "name": "[savefrom.app]: оптимизировать сайт",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 72,
+      "ddfdfc6d1de72aea01fb80e4": 14304747,
+      "15563c2c50d3838a64e76261": 4797788
+    }
   }
 ]
