@@ -447,5 +447,16 @@
     "assignees": [
       "Sergey Ivontev"
     ]
+  },
+  "0f25b35cde95e8ab1fa3dca8": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-10T15:12:29.401Z",
+    "sequentialId": 6229,
+    "name": "переписать логику фронтов под новый бэк",
+    "assignees": [
+      "Anna Shcharbakova",
+      "Konstantin Zaytsev"
+    ]
   }
 }
