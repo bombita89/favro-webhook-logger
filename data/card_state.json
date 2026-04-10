@@ -437,5 +437,15 @@
       "Victoria Lomonosova",
       "Ismat Valiyev"
     ]
+  },
+  "9f7a77b6c6a9f3989e33689a": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-10T11:53:20.753Z",
+    "sequentialId": 6303,
+    "name": "[savefrom.app]: оптимизировать сайт",
+    "assignees": [
+      "Sergey Ivontev"
+    ]
   }
 }
