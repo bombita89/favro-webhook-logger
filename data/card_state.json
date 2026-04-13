@@ -458,5 +458,15 @@
       "Anna Shcharbakova",
       "Konstantin Zaytsev"
     ]
+  },
+  "3c15585b26d2e747ea046180": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-13T15:09:53.859Z",
+    "sequentialId": 6309,
+    "name": "www-savefrom.com добавить эксперименты и добавить клакандер эксп",
+    "assignees": [
+      "Sergey Ivontev"
+    ]
   }
 }
