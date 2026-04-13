@@ -2726,5 +2726,22 @@
       "ddfdfc6d1de72aea01fb80e4": 362755821,
       "15563c2c50d3838a64e76261": 429153335
     }
+  },
+  {
+    "timestamp": "2026-04-13T15:09:53.859Z",
+    "cardCommonId": "3c15585b26d2e747ea046180",
+    "cardId": "68288ea5b03ac2b0442639c0",
+    "sequentialId": 6309,
+    "name": "www-savefrom.com добавить эксперименты и добавить клакандер эксп",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 74,
+      "ddfdfc6d1de72aea01fb80e4": 19913442,
+      "15563c2c50d3838a64e76261": 244430722
+    }
   }
 ]
