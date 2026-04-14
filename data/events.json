@@ -2800,5 +2800,26 @@
       "ddfdfc6d1de72aea01fb80e4": 87317151,
       "15563c2c50d3838a64e76261": 260748842
     }
+  },
+  {
+    "timestamp": "2026-04-14T12:55:30.285Z",
+    "cardCommonId": "df5e2889d290c6d4be953f25",
+    "cardId": "a02931a54ca3c52c34e2680f",
+    "sequentialId": 6306,
+    "name": "[lurkviewer] template fix",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "assignees": [
+      "Anna Shcharbakova",
+      "AbdulMalik Akhzamov"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 3922,
+      "3f6c5115c9ed29fb4c8e6490": 9152043,
+      "ddfdfc6d1de72aea01fb80e4": 1243162,
+      "e70873a4ee5289566911d143": 6617042,
+      "9ee2b845e4e8262a6ef80c56": 1768790,
+      "15563c2c50d3838a64e76261": 1545839
+    }
   }
 ]
