@@ -478,5 +478,15 @@
     "assignees": [
       "Anna Shcharbakova"
     ]
+  },
+  "7b8d0804da7f58f0e4563eaa": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-14T12:26:21.163Z",
+    "sequentialId": 6297,
+    "name": "[internal projects]: снести яндекс метрику, добавить sentry (6 сайтов)",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ]
   }
 }
