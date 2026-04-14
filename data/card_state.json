@@ -468,5 +468,15 @@
     "assignees": [
       "Sergey Ivontev"
     ]
+  },
+  "df5e2889d290c6d4be953f25": {
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "lastSeen": "2026-04-14T09:49:15.574Z",
+    "sequentialId": 6306,
+    "name": "[lurkviewer] template fix",
+    "assignees": [
+      "Anna Shcharbakova"
+    ]
   }
 }
