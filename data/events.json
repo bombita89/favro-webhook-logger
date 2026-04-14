@@ -2782,5 +2782,23 @@
     "moveDirection": "backward",
     "isReturn": true,
     "returnType": "code_review_rejection"
+  },
+  {
+    "timestamp": "2026-04-14T12:26:21.163Z",
+    "cardCommonId": "7b8d0804da7f58f0e4563eaa",
+    "cardId": "4e64de4f4ddda5b44523bed6",
+    "sequentialId": 6297,
+    "name": "[internal projects]: снести яндекс метрику, добавить sentry (6 сайтов)",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 106187029,
+      "3f6c5115c9ed29fb4c8e6490": 90,
+      "ddfdfc6d1de72aea01fb80e4": 87317151,
+      "15563c2c50d3838a64e76261": 260748842
+    }
   }
 ]
