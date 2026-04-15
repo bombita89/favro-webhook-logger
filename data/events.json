@@ -2821,5 +2821,23 @@
       "9ee2b845e4e8262a6ef80c56": 1768790,
       "15563c2c50d3838a64e76261": 1545839
     }
+  },
+  {
+    "timestamp": "2026-04-15T09:16:07.555Z",
+    "cardCommonId": "649bf0823c780a6976ca37b4",
+    "cardId": "30cf018bdeac9b9b1ac53048",
+    "sequentialId": 6140,
+    "name": "[Oauth2-televzr] добавить возможность дать пользователю про аккаунт на определенное время",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Sergey Ivontev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 1894052476,
+      "3f6c5115c9ed29fb4c8e6490": 68,
+      "ddfdfc6d1de72aea01fb80e4": 83307946,
+      "15563c2c50d3838a64e76261": 336613522
+    }
   }
 ]
