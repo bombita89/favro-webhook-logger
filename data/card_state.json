@@ -489,5 +489,15 @@
     "assignees": [
       "Konstantin Zaytsev"
     ]
+  },
+  "649bf0823c780a6976ca37b4": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-15T09:16:07.555Z",
+    "sequentialId": 6140,
+    "name": "[Oauth2-televzr] добавить возможность дать пользователю про аккаунт на определенное время",
+    "assignees": [
+      "Sergey Ivontev"
+    ]
   }
 }
