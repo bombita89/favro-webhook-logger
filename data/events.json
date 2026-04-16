@@ -2859,5 +2859,24 @@
     },
     "previousColumn": "Ready For Dev",
     "moveDirection": "forward"
+  },
+  {
+    "timestamp": "2026-04-16T08:28:33.334Z",
+    "cardCommonId": "15b68f3985e7ba609e2ce664",
+    "cardId": "ed77e82add7acaa1b344ca63",
+    "sequentialId": 6154,
+    "name": "[iss] сохранять историю навигации профилей",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Ismat Valiyev"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 1468479224,
+      "3f6c5115c9ed29fb4c8e6490": 60,
+      "ddfdfc6d1de72aea01fb80e4": 70850686,
+      "450eca361acacbda92cde88e": 778181,
+      "15563c2c50d3838a64e76261": 432611334
+    }
   }
 ]
