@@ -2951,5 +2951,25 @@
       "e70873a4ee5289566911d143": 455000,
       "15563c2c50d3838a64e76261": 6198312
     }
+  },
+  {
+    "timestamp": "2026-04-16T14:31:41.937Z",
+    "cardCommonId": "0f25b35cde95e8ab1fa3dca8",
+    "cardId": "ff9f2004a48be4c35c185020",
+    "sequentialId": 6229,
+    "name": "переписать логику фронтов под новый бэк",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "Anna Shcharbakova",
+      "Konstantin Zaytsev"
+    ],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 398386618,
+      "ddfdfc6d1de72aea01fb80e4": 377547674,
+      "15563c2c50d3838a64e76261": 531927447
+    },
+    "previousColumn": "Ready For Dev",
+    "moveDirection": "forward"
   }
 ]
