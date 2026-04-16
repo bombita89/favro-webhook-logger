@@ -509,5 +509,13 @@
     "assignees": [
       "Ismat Valiyev"
     ]
+  },
+  "5bda644546a6c8931f4c2200": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-16T11:38:07.366Z",
+    "sequentialId": 6339,
+    "name": "заменить ua кликандеры",
+    "assignees": []
   }
 }
