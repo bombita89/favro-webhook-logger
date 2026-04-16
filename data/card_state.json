@@ -449,9 +449,9 @@
     ]
   },
   "0f25b35cde95e8ab1fa3dca8": {
-    "columnId": "3f6c5115c9ed29fb4c8e6490",
-    "columnName": "Code Review",
-    "lastSeen": "2026-04-15T14:40:09.915Z",
+    "columnId": "15563c2c50d3838a64e76261",
+    "columnName": "Ready For Dev",
+    "lastSeen": "2026-04-16T10:25:05.921Z",
     "sequentialId": 6229,
     "name": "переписать логику фронтов под новый бэк",
     "assignees": [
