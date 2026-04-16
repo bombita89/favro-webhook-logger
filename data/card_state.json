@@ -499,5 +499,15 @@
     "assignees": [
       "Sergey Ivontev"
     ]
+  },
+  "15b68f3985e7ba609e2ce664": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-16T08:28:33.334Z",
+    "sequentialId": 6154,
+    "name": "[iss] сохранять историю навигации профилей",
+    "assignees": [
+      "Ismat Valiyev"
+    ]
   }
 }
