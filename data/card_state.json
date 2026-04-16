@@ -517,5 +517,16 @@
     "sequentialId": 6339,
     "name": "заменить ua кликандеры",
     "assignees": []
+  },
+  "d461fb970fbffe783b723c3a": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-16T14:30:22.572Z",
+    "sequentialId": 6322,
+    "name": "[televzr] Выпадающий список выбора качества перекрывается плеером",
+    "assignees": [
+      "Selim Ataballyev",
+      "Konstantin Zaytsev"
+    ]
   }
 }
