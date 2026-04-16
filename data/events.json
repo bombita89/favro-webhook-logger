@@ -2915,5 +2915,21 @@
       "ddfdfc6d1de72aea01fb80e4": 2681787,
       "15563c2c50d3838a64e76261": 26748
     }
+  },
+  {
+    "timestamp": "2026-04-16T12:46:52.588Z",
+    "cardCommonId": "5bda644546a6c8931f4c2200",
+    "cardId": "ffe0d26a811e7b2359c0d092",
+    "sequentialId": 6339,
+    "name": "заменить ua кликандеры",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [],
+    "timeOnColumns": {
+      "3f6c5115c9ed29fb4c8e6490": 3024,
+      "ddfdfc6d1de72aea01fb80e4": 6795613,
+      "450eca361acacbda92cde88e": 8434,
+      "15563c2c50d3838a64e76261": 26748
+    }
   }
 ]
