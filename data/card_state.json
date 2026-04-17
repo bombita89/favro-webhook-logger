@@ -528,5 +528,15 @@
       "Selim Ataballyev",
       "Konstantin Zaytsev"
     ]
+  },
+  "97e84f0b7026fc00980b8c35": {
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "lastSeen": "2026-04-17T12:10:31.545Z",
+    "sequentialId": 6209,
+    "name": "[99odds.com] Full-stack: раздел Accumulators / High Odds",
+    "assignees": [
+      "AbdulMalik Akhzamov"
+    ]
   }
 }
