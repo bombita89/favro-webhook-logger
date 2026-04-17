@@ -2993,5 +2993,23 @@
     "moveDirection": "backward",
     "isReturn": true,
     "returnType": "code_review_rejection"
+  },
+  {
+    "timestamp": "2026-04-17T12:10:31.545Z",
+    "cardCommonId": "97e84f0b7026fc00980b8c35",
+    "cardId": "9193b4e8dab0a771105c9f78",
+    "sequentialId": 6209,
+    "name": "[99odds.com] Full-stack: раздел Accumulators / High Odds",
+    "columnId": "3f6c5115c9ed29fb4c8e6490",
+    "columnName": "Code Review",
+    "assignees": [
+      "AbdulMalik Akhzamov"
+    ],
+    "timeOnColumns": {
+      "af8ed7601472c3e22faa634b": 362310036,
+      "3f6c5115c9ed29fb4c8e6490": 81,
+      "ddfdfc6d1de72aea01fb80e4": 189476628,
+      "15563c2c50d3838a64e76261": 413697655
+    }
   }
 ]
